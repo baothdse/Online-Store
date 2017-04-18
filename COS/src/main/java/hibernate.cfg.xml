@@ -17,7 +17,6 @@
         <mapping class="com.cos.entities.Cart" />
         <mapping class="com.cos.entities.Discount" />
         <mapping class="com.cos.entities.Product" />
-        <mapping class="com.cos.entities.Role" />
         <mapping class="com.cos.entities.User" />
     </session-factory>
 </hibernate-configuration>

@@ -10,6 +10,8 @@ productKind varchar(255),
 brand varchar(255),
 price varchar(20),
 productQuantity int,
+addedDate date,
+addedTime time,
 primary key (productId)
 );
 
@@ -52,12 +54,6 @@ primary key(selectedId),
 constraint fk_selected foreign key (productId) references Product(productId)
 );
 
-create table Role (
-roleId int not null auto_increment,
-roleName varchar(255),
-primary key(roleId)
-);
-
 create table User (
 userId int not null auto_increment,
 username varchar(255),
@@ -69,8 +65,7 @@ city varchar(255),
 email varchar(255),
 phone varchar(20),
 roleId int,
-primary key(userId),
-constraint fk_role foreign key (roleId) references Role (roleId)
+primary key(userId)
 );
 
 create table Cart (
