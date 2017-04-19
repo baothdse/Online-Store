@@ -12,6 +12,7 @@ price varchar(20),
 productQuantity int,
 addedDate date,
 addedTime time,
+soldQuantity int,
 primary key (productId)
 );
 

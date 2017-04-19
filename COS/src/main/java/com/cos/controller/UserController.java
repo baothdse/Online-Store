@@ -14,7 +14,6 @@ import com.cos.entities.User;
 import com.cos.errors.Error;
 import com.cos.services.interfaces.UserServiceInterface;
 
-@Controller
 @RestController
 @RequestMapping("/user")
 public class UserController {
