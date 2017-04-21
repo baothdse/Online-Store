@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Apr 18, 2017 5:53:03 PM by Hibernate Tools 4.3.1.Final
+// Generated Apr 21, 2017 6:33:01 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 

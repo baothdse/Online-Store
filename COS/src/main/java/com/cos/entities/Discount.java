@@ -1,16 +1,17 @@
 package com.cos.entities;
-// Generated Apr 18, 2017 5:53:03 PM by Hibernate Tools 4.3.1.Final
+// Generated Apr 21, 2017 6:33:01 PM by Hibernate Tools 4.3.1.Final
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,21 +26,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Discount implements java.io.Serializable {
 
 	private Integer discountId;
+	private Product product;
 	private String discountCode;
 	private Date startDate;
 	private Date endDate;
 	private String amount;
-	private Set<Product> products = new HashSet<Product>(0);
 
 	public Discount() {
 	}
 
-	public Discount(String discountCode, Date startDate, Date endDate, String amount, Set<Product> products) {
+	public Discount(Product product, String discountCode, Date startDate, Date endDate, String amount) {
+		this.product = product;
 		this.discountCode = discountCode;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.amount = amount;
-		this.products = products;
 	}
 
 	@Id
@@ -52,6 +53,17 @@ public class Discount implements java.io.Serializable {
 
 	public void setDiscountId(Integer discountId) {
 		this.discountId = discountId;
+	}
+
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productId")
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	@Column(name = "discountCode", length = 20)
@@ -90,16 +102,6 @@ public class Discount implements java.io.Serializable {
 
 	public void setAmount(String amount) {
 		this.amount = amount;
-	}
-
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "discounts")
-	public Set<Product> getProducts() {
-		return this.products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
 	}
 
 }

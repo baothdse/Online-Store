@@ -1,15 +1,15 @@
 package com.cos.entities;
-// Generated Apr 18, 2017 5:53:03 PM by Hibernate Tools 4.3.1.Final
+// Generated Apr 21, 2017 6:33:01 PM by Hibernate Tools 4.3.1.Final
 
-import java.util.HashSet;
-import java.util.Set;
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,15 +22,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Image implements java.io.Serializable {
 
 	private Integer imageId;
+	private Product product;
 	private String link;
-	private Set<Product> products = new HashSet<Product>(0);
 
 	public Image() {
 	}
 
-	public Image(String link, Set<Product> products) {
+	public Image(Product product, String link) {
+		this.product = product;
 		this.link = link;
-		this.products = products;
 	}
 
 	@Id
@@ -45,6 +45,17 @@ public class Image implements java.io.Serializable {
 		this.imageId = imageId;
 	}
 
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "productId")
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	@Column(name = "link", length = 65535)
 	public String getLink() {
 		return this.link;
@@ -52,16 +63,6 @@ public class Image implements java.io.Serializable {
 
 	public void setLink(String link) {
 		this.link = link;
-	}
-
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "images")
-	public Set<Product> getProducts() {
-		return this.products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
 	}
 
 }

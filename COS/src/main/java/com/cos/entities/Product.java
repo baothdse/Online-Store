@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Apr 18, 2017 5:53:03 PM by Hibernate Tools 4.3.1.Final
+// Generated Apr 21, 2017 6:33:01 PM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,9 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -161,10 +158,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "productdiscount", catalog = "cosmetic_online_store", joinColumns = {
-			@JoinColumn(name = "productId", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "discountId", nullable = false, updatable = false) })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	public Set<Discount> getDiscounts() {
 		return this.discounts;
 	}
@@ -184,10 +178,7 @@ public class Product implements java.io.Serializable {
 	}
 
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "productimage", catalog = "cosmetic_online_store", joinColumns = {
-			@JoinColumn(name = "productId", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "imageId", nullable = false, updatable = false) })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	public Set<Image> getImages() {
 		return this.images;
 	}
