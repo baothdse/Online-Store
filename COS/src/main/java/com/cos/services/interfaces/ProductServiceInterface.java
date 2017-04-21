@@ -8,4 +8,8 @@ public interface ProductServiceInterface {
 	Product getNewestProduct ();
 	Product getBestSellingProduct();
 	List<Product> getRelatedProduct(String productKind);
+	Product getProductById(Integer productId);
+	Product createProduct(String productName, String introduction, String productKind, String brand, 
+			String price, int productQuantity);
+	List<Product> get4ProductByProductKind(String productKind);
 }

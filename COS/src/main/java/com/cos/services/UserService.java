@@ -25,4 +25,27 @@ public class UserService implements UserServiceInterface {
 		return user;
 	}
 
+	@Override
+	public User register(String username, String password, String firstName, String lastName, String address,
+			String city, String email, String phone) {
+		// TODO Auto-generated method stub
+		User user = new User();
+		if (userRepository.findByUsername(username) == null) {
+			
+			user.setUsername(username);
+			user.setPassword(password);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setAddress(address);
+			user.setCity(city);
+			user.setEmail(email);
+			user.setPhone(phone);
+			user.setRoleId(2);
+			userRepository.save(user);
+			return user;
+		} else {
+			return null;
+		}
+	}
+
 }

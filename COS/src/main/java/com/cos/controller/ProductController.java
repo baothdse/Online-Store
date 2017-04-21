@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.constants.ErrorConstants;
+import com.cos.constants.ParamConstants;
 import com.cos.constants.URLConstant;
 import com.cos.entities.Product;
+import com.cos.errors.Error;
 import com.cos.services.interfaces.ProductServiceInterface;
 
 @RestController
@@ -33,9 +36,38 @@ public class ProductController {
 		return new ResponseEntity<Product> (product, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/related", method = RequestMethod.GET)
-	public ResponseEntity<?> getRelatedProduct(@RequestParam("productKind") String productKind) {
+	@RequestMapping(value = URLConstant.RELATED_PRODUCT_URL, method = RequestMethod.GET)
+	public ResponseEntity<?> getRelatedProduct(@RequestParam(ParamConstants.PRODUCT_KIND) String productKind) {
 		List<Product> listOfProduct = productServiceInterface.getRelatedProduct(productKind);
 		return new ResponseEntity<List<Product>> (listOfProduct, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.PRODUCT_DETAIL_URL, method = RequestMethod.GET)
+	public ResponseEntity<?> getProductDetail(@RequestParam(ParamConstants.PRODUCT_ID) int productId) {
+		Product product = productServiceInterface.getProductById(productId);
+		return new ResponseEntity<Product> (product, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.CREATE_PRODUCT_URL, method = RequestMethod.POST)
+	public ResponseEntity<?> createProduct(@RequestParam(ParamConstants.PRODUCT_NAME) String productName,
+											@RequestParam(ParamConstants.INTRODUCTION) String introduction,
+											@RequestParam(ParamConstants.PRODUCT_KIND) String productKind,
+											@RequestParam(ParamConstants.BRAND) String brand,
+											@RequestParam(ParamConstants.PRICE) String price,
+											@RequestParam(ParamConstants.PRODUCT_QUANTITY) int productQuantity) {
+		Product product = productServiceInterface.createProduct(productName, introduction, productKind, brand, price,
+				productQuantity);
+		Error error = new Error(ErrorConstants.ER003, ErrorConstants.EM003);
+		if (product != null) {
+			return new ResponseEntity<Product> (product, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Error> (error, HttpStatus.OK); 
+		}		
+	}
+	
+	@RequestMapping(value = URLConstant.GET_PRODUCT_BY_KIND_URL, method = RequestMethod.GET)
+	public ResponseEntity<?> get4ProductByProductKind(@RequestParam(ParamConstants.PRODUCT_KIND) String productKind) {
+		List<Product> groupOf4ProductByKind = productServiceInterface.get4ProductByProductKind(productKind);
+		return new ResponseEntity<List<Product>> (groupOf4ProductByKind, HttpStatus.OK);
 	}
 }
