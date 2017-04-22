@@ -95,3 +95,22 @@ INSERT INTO `cosmetic_online_store`.`product` (`productName`, `introduction`, `p
 INSERT INTO `cosmetic_online_store`.`product` (`productName`, `introduction`, `productKind`, `brand`, `price`, `productQuantity`, `addedDate`, `addedTime`) VALUES ('KEM TẨY TRANG KHOÁNG NÚI LỬA', 'KEM TẨY TRANG KHOÁNG NÚI LỬA', 'Da mặt', 'Narguirite', '170000', '28', '2017-04-21', '18:49:00');
 INSERT INTO `cosmetic_online_store`.`product` (`productName`, `introduction`, `productKind`, `brand`, `price`, `productQuantity`, `addedDate`, `addedTime`) VALUES ('SỮA RỬA MẶT KHOÁNG NÚI LỬA', 'Chứa các hạt khoáng núi lửa cực nhỏ giúp làm sạch sâu từ lỗ chân lông, sữa rửa mặt ít bọt, phù hợp với nhiều loại da kể da cả mụn. Bên cạnh đó sản phẩm không chứa hương liệu mà có tinh dầu tràm trà nguyên chất giúp kháng khuẩn và ngừa mụn hiệu quả. Sản phẩm cam kết không gây khô da, bào mòn da hoặc làm mỏng da. ', 'Da mặt', 'Narguirite', '170000', '28', '2017-04-21', '18:50:00');
 UPDATE `cosmetic_online_store`.`product` SET `introduction`='Chứa các hạt khoáng núi lửa cực nhỏ giúp làm sạch sâu từ lỗ chân lông, kem giúp làm tan đi lớp trang điểm một cách dễ dàng, không gây khô ráp da mà giúp da mềm ẩm sau mỗi lần sử dụng. Bên cạnh đó sản phẩm không chứa hương liệu mà có tinh dầu tràm trà nguyên chất giúp kháng khuẩn và ngừa mụn hiệu quả.' WHERE `productId`='14';
+
+
+/*image*/
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFUHU0TmFKcnhEMmM/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFelhtaTdud01jalE/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFUWN4ZjdJNDVrOG8/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFdi1YS1VtLU9UMlU/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFd2l3aVJIaG9wUGs/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFcDdWa2FpR0ZsWjg/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFcDJZeVhNUXRQNHM/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/file/d/0BwOafSWQIXaFM0huOC0xMEI5Nms/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFT2RWSmFjSFV6V0k/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFRTl3WVhpTHpqZ2M/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFdkxneW13Q1ZXU2M/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFSDBlVTlxMXNNdlE/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFaGZFckstcXlFRXc/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFYnBQNXhlWmx1Wlk/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFX2JRUHZYN2xKXzg/view?usp=sharing');
+INSERT INTO `cosmetic_online_store`.`image` (`link`) VALUES ('https://drive.google.com/open?id=0BwOafSWQIXaFTnd6N0ZzUEFlVXc/view?usp=sharing');
