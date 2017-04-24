@@ -1,14 +1,12 @@
 package com.cos.entities;
-// Generated Apr 21, 2017 6:33:01 PM by Hibernate Tools 4.3.1.Final
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated Apr 23, 2017 3:51:12 AM by Hibernate Tools 4.3.1.Final
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

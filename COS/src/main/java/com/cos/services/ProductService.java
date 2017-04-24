@@ -8,7 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.entities.Image;
 import com.cos.entities.Product;
+import com.cos.repositories.ImageRepository;
 import com.cos.repositories.ProductRepository;
 import com.cos.services.interfaces.ProductServiceInterface;
 
@@ -39,13 +41,17 @@ public class ProductService implements ProductServiceInterface {
 	}
 	@Override
 	public List<Product> getRelatedProduct(String productKind) {
-		List<Product> listOfProducts = productRepository.findByProductKind(productKind, new PageRequest(0,6));
+		List<Product> listOfProducts = productRepository.findByProductKind(productKind, new PageRequest(0,5));
 		return listOfProducts;
 	}
 	@Override
 	public Product getProductById(Integer productId) {
 		// TODO Auto-generated method stub
-		return productRepository.findByProductId(productId);
+		Product product = productRepository.findByProductId(productId);
+		Image image = new Image();
+		image.setProduct(product);
+		product.getImages().add(image);
+		return product;
 	}
 	@Override
 	public Product createProduct(String productName, String introduction, String productKind, String brand,
@@ -62,6 +68,7 @@ public class ProductService implements ProductServiceInterface {
 			product.setProductQuantity(productQuantity);
 			product.setAddedDate(cal.getTime());
 			product.setAddedTime(cal.getTime());
+			product.setSoldQuantity(0);
 			productRepository.save(product);
 			return product;
 		} else {
