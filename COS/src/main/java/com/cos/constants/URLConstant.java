@@ -9,4 +9,5 @@ public class URLConstant {
 	public static final String PRODUCT_DETAIL_URL = "/detail";
 	public static final String CREATE_PRODUCT_URL = "/create";
 	public static final String GET_PRODUCT_BY_KIND_URL = "/get-product-by-kind";
+	public static final String DELETE_PRODUCT_URL = "/delete";
 }

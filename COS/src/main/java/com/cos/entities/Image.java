@@ -3,6 +3,8 @@ package com.cos.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,7 +26,7 @@ public class Image implements java.io.Serializable {
 	private Integer imageId;
 	private Product product;
 	private String link;
-	private Boolean main;
+	private Boolean main = false;
 
 	public Image() {
 	}
@@ -69,6 +71,9 @@ public class Image implements java.io.Serializable {
 
 	@Column(name = "main")
 	public Boolean getMain() {
+		if (main == null) {
+			setMain(false);
+		}
 		return this.main;
 	}
 

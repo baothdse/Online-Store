@@ -48,9 +48,6 @@ public class ProductService implements ProductServiceInterface {
 	public Product getProductById(Integer productId) {
 		// TODO Auto-generated method stub
 		Product product = productRepository.findByProductId(productId);
-		Image image = new Image();
-		image.setProduct(product);
-		product.getImages().add(image);
 		return product;
 	}
 	@Override
@@ -74,13 +71,23 @@ public class ProductService implements ProductServiceInterface {
 		} else {
 			return null;
 		}
-		
 	}
 	@Override
 	public List<Product> get4ProductByProductKind(String productKind) {
 		// TODO Auto-generated method stub
 		List<Product> listOfProducts = productRepository.findByProductKind(productKind, new PageRequest(0,4));
 		return listOfProducts;
+	}
+	@Override
+	public void deleteProductById(int productId) {
+		// TODO Auto-generated method stub
+		Product product = getProductById(productId);
+		productRepository.delete(product);
+	}
+	@Override
+	public List<Product> getAllProduct() {
+		// TODO Auto-generated method stub
+		return productRepository.findAll();
 	}
 	
 }

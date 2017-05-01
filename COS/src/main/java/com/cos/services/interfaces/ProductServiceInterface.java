@@ -11,5 +11,7 @@ public interface ProductServiceInterface {
 	Product getProductById(Integer productId);
 	Product createProduct(String productName, String introduction, String productKind, String brand, 
 			String price, int productQuantity);
+	void deleteProductById(int productId);
 	List<Product> get4ProductByProductKind(String productKind);
+	List<Product> getAllProduct();
 }

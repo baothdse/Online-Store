@@ -36,7 +36,7 @@ public class Product implements java.io.Serializable {
 	private Integer productQuantity;
 	private Date addedDate;
 	private Date addedTime;
-	private Integer soldQuantity;
+	private Integer soldQuantity = 0;
 	private Set<Discount> discounts = new HashSet<Discount>(0);
 	private Set<Selectedproduct> selectedproducts = new HashSet<Selectedproduct>(0);
 	private Set<Image> images = new HashSet<Image>(0);

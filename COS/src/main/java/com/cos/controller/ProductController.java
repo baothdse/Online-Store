@@ -24,6 +24,7 @@ public class ProductController {
 	@Autowired
 	private ProductServiceInterface productServiceInterface;
 	
+	
 	@RequestMapping(value = URLConstant.NEWEST_PRODUCT_URL, method = RequestMethod.GET)
 	public ResponseEntity<?> getAllProduct() {
 		Product product = productServiceInterface.getNewestProduct();
@@ -45,6 +46,7 @@ public class ProductController {
 	@RequestMapping(value = URLConstant.PRODUCT_DETAIL_URL, method = RequestMethod.GET)
 	public ResponseEntity<?> getProductDetail(@RequestParam(ParamConstants.PRODUCT_ID) int productId) {
 		Product product = productServiceInterface.getProductById(productId);
+		product.getImages().remove(null);
 		return new ResponseEntity<Product> (product, HttpStatus.OK);
 	}
 	
@@ -69,5 +71,12 @@ public class ProductController {
 	public ResponseEntity<?> get4ProductByProductKind(@RequestParam(ParamConstants.PRODUCT_KIND) String productKind) {
 		List<Product> groupOf4ProductByKind = productServiceInterface.get4ProductByProductKind(productKind);
 		return new ResponseEntity<List<Product>> (groupOf4ProductByKind, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.DELETE_PRODUCT_URL, method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteProduct(@RequestParam(ParamConstants.PRODUCT_ID) int productId) {
+		productServiceInterface.deleteProductById(productId);
+		List<Product> listOfProduct = productServiceInterface.getAllProduct();
+		return new ResponseEntity<List<Product>> (listOfProduct, HttpStatus.OK);
 	}
 }
