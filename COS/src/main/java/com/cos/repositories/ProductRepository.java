@@ -1,9 +1,11 @@
 package com.cos.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,5 +23,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	Product findByProductId(Integer productId);
 	
 	Product findByProductName(String productName);
+	
+	@Modifying
+	@Query("update Product p set p.introduction = ?1, p.productKind = ?2,"
+			+ "p.brand = ?3, p.price = ?4, p.productQuantity = ?5, p.addedDate = ?6, p.addedTime = ?7 "
+			+ "where p.productId = ?8")
+	void setProductInfoById (String introduction, String productKind, String brand, 
+			String price, int productQuantity, Date addedDate, Date addedTime, int productId);
+	
 	
 }

@@ -1,6 +1,7 @@
 package com.cos.services;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cos.entities.Image;
 import com.cos.entities.Product;
-import com.cos.repositories.ImageRepository;
 import com.cos.repositories.ProductRepository;
 import com.cos.services.interfaces.ProductServiceInterface;
 
@@ -88,6 +87,13 @@ public class ProductService implements ProductServiceInterface {
 	public List<Product> getAllProduct() {
 		// TODO Auto-generated method stub
 		return productRepository.findAll();
+	}
+	@Override
+	public void updateProductInfo(String introduction, String productKind, String brand, String price,
+			int productQuantity, Date addedDate, Date addedTime, int productId) {
+		// TODO Auto-generated method stub
+		productRepository.setProductInfoById(introduction,
+				productKind, brand, price, productQuantity, addedDate, addedTime, productId);
 	}
 	
 }

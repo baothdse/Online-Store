@@ -1,5 +1,7 @@
 package com.cos.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,4 +81,20 @@ public class ProductController {
 		List<Product> listOfProduct = productServiceInterface.getAllProduct();
 		return new ResponseEntity<List<Product>> (listOfProduct, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ResponseEntity<?> updateProductInfo(@RequestParam(ParamConstants.INTRODUCTION) String introduction,
+											@RequestParam(ParamConstants.PRODUCT_KIND) String productKind,
+											@RequestParam(ParamConstants.BRAND) String brand,
+											@RequestParam(ParamConstants.PRICE) String price,
+											@RequestParam(ParamConstants.PRODUCT_QUANTITY) int productQuantity,
+											@RequestParam(ParamConstants.PRODUCT_ID) int productId){
+		Calendar calendar = Calendar.getInstance();
+		Date datetime = calendar.getTime();
+		productServiceInterface.updateProductInfo(introduction, productKind, 
+				brand, price, productQuantity, datetime, datetime, productId);
+		Product product = productServiceInterface.getProductById(productId);
+		return new ResponseEntity<Product>(product, HttpStatus.OK);
+	}
+											
 }
