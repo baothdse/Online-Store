@@ -3,8 +3,10 @@ package com.cos.entities;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -39,7 +41,7 @@ public class Product implements java.io.Serializable {
 	private Integer soldQuantity = 0;
 	private Set<Discount> discounts = new HashSet<Discount>(0);
 	private Set<Selectedproduct> selectedproducts = new HashSet<Selectedproduct>(0);
-	private Set<Image> images = new HashSet<Image>(0);
+	private List<Image> images = new ArrayList<Image>();
 //	@Transient
 //	private ArrayList<String> imageLink ;
 //
@@ -60,7 +62,7 @@ public class Product implements java.io.Serializable {
 
 	public Product(String productName, String introduction, String productKind, String brand, String price,
 			Integer productQuantity, Date addedDate, Date addedTime, Integer soldQuantity, Set<Discount> discounts,
-			Set<Selectedproduct> selectedproducts, Set<Image> images) {
+			Set<Selectedproduct> selectedproducts, List<Image> images) {
 		this.productName = productName;
 		this.introduction = introduction;
 		this.productKind = productKind;
@@ -163,6 +165,9 @@ public class Product implements java.io.Serializable {
 
 	@Column(name = "soldQuantity")
 	public Integer getSoldQuantity() {
+//		if (soldQuantity == null) {
+//			setSoldQuantity(0);
+//		}
 		return this.soldQuantity;
 	}
 
@@ -192,11 +197,11 @@ public class Product implements java.io.Serializable {
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Image> getImages() {
+	public List<Image> getImages() {
 		return this.images;
 	}
 
-	public void setImages(Set<Image> images) {
+	public void setImages(List<Image> images) {
 		this.images = images;
 	}
 

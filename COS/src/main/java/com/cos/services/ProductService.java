@@ -9,9 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.entities.Image;
 import com.cos.entities.Product;
 import com.cos.repositories.ProductRepository;
 import com.cos.services.interfaces.ProductServiceInterface;
+
 
 @Service
 @Transactional
@@ -47,6 +49,12 @@ public class ProductService implements ProductServiceInterface {
 	public Product getProductById(Integer productId) {
 		// TODO Auto-generated method stub
 		Product product = productRepository.findByProductId(productId);
+		List<Image> listOfImage = product.getImages();
+		for (int index = 0; index < listOfImage.size(); index++) {
+			if (listOfImage.get(index).getMain() == false) {
+				listOfImage.remove(index);
+			}
+		}
 		return product;
 	}
 	@Override
