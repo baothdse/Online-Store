@@ -10,6 +10,7 @@ public interface ProductServiceInterface {
 	Product getBestSellingProduct();
 	List<Product> getRelatedProduct(String productKind);
 	Product getProductById(Integer productId);
+	Product getProductDetail(Integer productId);
 	Product createProduct(String productName, String introduction, String productKind, String brand, 
 			String price, int productQuantity);
 	void deleteProductById(int productId);

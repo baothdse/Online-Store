@@ -103,5 +103,11 @@ public class ProductService implements ProductServiceInterface {
 		productRepository.setProductInfoById(introduction,
 				productKind, brand, price, productQuantity, addedDate, addedTime, productId);
 	}
+	@Override
+	public Product getProductDetail(Integer productId) {
+		// TODO Auto-generated method stub
+		Product product = productRepository.findByProductId(productId);
+		return product;
+	}
 	
 }

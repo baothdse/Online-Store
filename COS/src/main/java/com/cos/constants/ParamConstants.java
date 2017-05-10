@@ -24,4 +24,9 @@ public class ParamConstants {
 	public static final String EMAIL = "email";
 	public static final String PHONE = "phone";
 	public static final String ROLE_ID = "roleId";
+	
+	//image
+	public static final String IMAGE_ID = "imageId";
+	public static final String LINK = "link";
+	public static final String MAIN = "main";
 }
