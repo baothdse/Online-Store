@@ -1,5 +1,7 @@
 package com.cos.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,4 +33,36 @@ public class ImageService implements ImageServiceInterface {
 		return image;
 	}
 
+	@Override
+	public List<Image> getAllImage() {
+		// TODO Auto-generated method stub
+		List<Image> listOfImage = imageRepository.findAll();
+		return listOfImage;
+	}
+
+	@Override
+	public void changeMainImage(Image image) {
+		// TODO Auto-generated method stub
+		List<Image> listOfImageByProductId = getImageByProductId(image.getProduct().getProductId());
+		imageRepository.setFixedMainFor(true, image.getImageId());
+		listOfImageByProductId.remove(image);
+		for (Image i : listOfImageByProductId) {
+			imageRepository.setFixedMainFor(false, i.getImageId());
+		}
+	}
+
+	@Override
+	public Image getImageById(int imageId) {
+		// TODO Auto-generated method stub
+		return imageRepository.findByImageId(imageId);
+	}
+
+	@Override
+	public List<Image> getImageByProductId(Integer productId) {
+		// TODO Auto-generated method stub
+		List<Image> listOfImageByProductId = imageRepository.findByProduct(productId);
+		return listOfImageByProductId;
+	}
+
+	
 }

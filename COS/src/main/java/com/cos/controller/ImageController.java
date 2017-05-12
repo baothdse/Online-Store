@@ -1,5 +1,7 @@
 package com.cos.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,4 +29,18 @@ public class ImageController {
 		Image image = imageServiceInterface.addImage(link, productId, main);
 		return new ResponseEntity<Image> (image, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = URLConstant.GET_ALL_IMAGE, method = RequestMethod.GET)
+	public ResponseEntity<?> getAllImage() {
+		List<Image> listOfImage = imageServiceInterface.getAllImage();
+		return new ResponseEntity<List<Image>> (listOfImage, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.CHANGE_MAIN_IMAGE, method = RequestMethod.POST)
+	public ResponseEntity<?> changeMainImage(@RequestParam(ParamConstants.IMAGE_ID) Integer imageId) {
+		Image image = imageServiceInterface.getImageById(imageId);
+		imageServiceInterface.changeMainImage(image);
+		return new ResponseEntity<Image> (image, HttpStatus.OK);
+	}
+	
 }

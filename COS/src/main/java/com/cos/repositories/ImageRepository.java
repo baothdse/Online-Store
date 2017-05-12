@@ -1,18 +1,22 @@
 package com.cos.repositories;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.cos.entities.Image;
 
 public interface ImageRepository extends JpaRepository<Image, Integer> {
-	@Query("Select i from Image i where i.product.productId = :productId")
-	Set<Image> findByProduct(@Param("productId") Integer productId);
-	@Query("Select i from Image i where i.product.productId = :productId and :main = true")
-	ArrayList<Image> findByProductAndMain(@Param("productId") Integer productId, 
-									@Param("main") boolean main);
+	
+	@Query("select i from Image i where i.product.productId = :productId")
+	List<Image> findByProduct(@Param("productId") Integer productId);
+	
+	Image findByImageId(Integer imageId);
+	
+	@Modifying
+	@Query("update Image i set i.main = ?1 where i.imageId = ?2")
+	void setFixedMainFor(boolean main, int imageId);
 }

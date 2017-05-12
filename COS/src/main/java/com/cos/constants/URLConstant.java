@@ -14,4 +14,6 @@ public class URLConstant {
 	//image
 	public static final String IMAGE_URL = "/image";
 	public static final String ADD_IMAGE_URL = "/add";
+	public static final String GET_ALL_IMAGE = "/all";
+	public static final String CHANGE_MAIN_IMAGE = "change";
 }
