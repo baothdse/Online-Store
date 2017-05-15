@@ -69,7 +69,7 @@ public class ProductController {
 		}		
 	}
 	
-	@RequestMapping(value = URLConstant.GET_PRODUCT_BY_KIND_URL, method = RequestMethod.GET)
+	@RequestMapping(value = URLConstant.GET_4_PRODUCT_BY_KIND_URL, method = RequestMethod.GET)
 	public ResponseEntity<?> get4ProductByProductKind(@RequestParam(ParamConstants.PRODUCT_KIND) String productKind) {
 		List<Product> groupOf4ProductByKind = productServiceInterface.get4ProductByProductKind(productKind);
 		return new ResponseEntity<List<Product>> (groupOf4ProductByKind, HttpStatus.OK);
@@ -82,7 +82,7 @@ public class ProductController {
 		return new ResponseEntity<List<Product>> (listOfProduct, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = URLConstant.UPDATE, method = RequestMethod.POST)
 	public ResponseEntity<?> updateProductInfo(@RequestParam(ParamConstants.INTRODUCTION) String introduction,
 											@RequestParam(ParamConstants.PRODUCT_KIND) String productKind,
 											@RequestParam(ParamConstants.BRAND) String brand,
@@ -96,5 +96,10 @@ public class ProductController {
 		Product product = productServiceInterface.getProductById(productId);
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
-											
+	
+	@RequestMapping(value = URLConstant.GET_PRODUCT_BY_KIND_URL , method = RequestMethod.GET)
+	public ResponseEntity<?> getAllProductByProductKind(@RequestParam(ParamConstants.PRODUCT_KIND) String productKind) {
+		List<Product> listOfProductByKind = productServiceInterface.getAllProductByProductKind(productKind);
+		return new ResponseEntity<List<Product>> (listOfProductByKind, HttpStatus.OK);
+	}
 }

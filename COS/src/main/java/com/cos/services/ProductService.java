@@ -85,6 +85,14 @@ public class ProductService implements ProductServiceInterface {
 		List<Product> listOfProducts = productRepository.findByProductKind(productKind, new PageRequest(0,4));
 		return listOfProducts;
 	}
+	
+	@Override
+	public List<Product> getAllProductByProductKind(String productKind) {
+		// TODO Auto-generated method stub
+		List<Product> listOfProducts = productRepository.findByProductKind(productKind);
+		return listOfProducts;
+	}
+	
 	@Override
 	public void deleteProductById(int productId) {
 		// TODO Auto-generated method stub
@@ -109,5 +117,6 @@ public class ProductService implements ProductServiceInterface {
 		Product product = productRepository.findByProductId(productId);
 		return product;
 	}
+
 	
 }

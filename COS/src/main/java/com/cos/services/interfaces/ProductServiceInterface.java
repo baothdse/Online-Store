@@ -15,6 +15,7 @@ public interface ProductServiceInterface {
 			String price, int productQuantity);
 	void deleteProductById(int productId);
 	List<Product> get4ProductByProductKind(String productKind);
+	List<Product> getAllProductByProductKind(String productKind);
 	List<Product> getAllProduct();
 	void updateProductInfo(String introduction, String productKind, String brand, 
 			String price, int productQuantity, Date addedDate, Date addedTime, int productId);

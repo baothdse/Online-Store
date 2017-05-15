@@ -20,6 +20,7 @@ create table Image (
 imageId int not null auto_increment,
 link text,
 productId int,
+main boolean,
 primary key (imageId),
 constraint fk_product_image foreign key (productId) references Product(productId)
 );
@@ -95,7 +96,6 @@ INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`b
 INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`brand`,`price`,`productQuantity`,`addedDate`,`addedTime`,`soldQuantity`) VALUES (14,'KEM TẨY TRANG KHOÁNG NÚI LỬA','Chứa các hạt khoáng núi lửa cực nhỏ giúp làm sạch sâu từ lỗ chân lông, kem giúp làm tan đi lớp trang điểm một cách dễ dàng, không gây khô ráp da mà giúp da mềm ẩm sau mỗi lần sử dụng. Bên cạnh đó sản phẩm không chứa hương liệu mà có tinh dầu tràm trà nguyên chất giúp kháng khuẩn và ngừa mụn hiệu quả.','face','Narguirite','170000',28,'2017-04-21','18:49:00',0);
 INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`brand`,`price`,`productQuantity`,`addedDate`,`addedTime`,`soldQuantity`) VALUES (15,'SỮA RỬA MẶT KHOÁNG NÚI LỬA','abc','abc','abc','100000',20,'2017-05-01','16:00:12',0);
 
-
 /*image */
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (1,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17352104_444388265902964_5551151152245435609_n.jpg?oh=3d25c0dea8bce921ca73d70983e3ebf1&oe=59978D47',1,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (2,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457884_444388322569625_770694559152670146_n.jpg?oh=7832af1c7015d4aece938262b172d570&oe=597DBA97',2,1);
@@ -113,3 +113,4 @@ INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (13,'https://sc
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (14,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',14,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (15,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',15,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (16,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',15,0);
+

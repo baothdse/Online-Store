@@ -20,6 +20,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query("select p from Product p where p.productKind = :productKind order by p.addedDate asc, p.addedTime asc")
 	List<Product> findByProductKind(@Param("productKind") String productKind, Pageable pageable);
 	
+	@Query("select p from Product p where p.productKind = :productKind order by p.addedDate asc, p.addedTime asc")
+	List<Product> findByProductKind(@Param("productKind") String productKind);
+	
 	Product findByProductId(Integer productId);
 	
 	Product findByProductName(String productName);
