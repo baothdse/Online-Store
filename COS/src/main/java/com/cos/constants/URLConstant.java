@@ -18,4 +18,15 @@ public class URLConstant {
 	public static final String ADD_IMAGE_URL = "/add";
 	public static final String GET_ALL_IMAGE = "/all";
 	public static final String CHANGE_MAIN_IMAGE = "change";
+	
+	//discount
+	public static final String DISCOUNT_URL = "/discount";
+	public static final String ADD_DISCOUNT_URL = "/add-discount";
+	public static final String DEL_DISCOUNT_URL = "/del-discount";
+	
+	//cart
+	public static final String CART_URL = "/cart";
+	public static final String GET_ALL_CART = "/get-all";
+	public static final String GET_CART_BY_USER = "/get-cart-by-user";
+	public static final String ADD_PRODUCT_TO_CART = "/add-product-to-cart";
 }

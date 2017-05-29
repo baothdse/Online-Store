@@ -1,25 +1,25 @@
 package com.cos.entities;
-// Generated Apr 23, 2017 3:51:12 AM by Hibernate Tools 4.3.1.Final
+// Generated May 25, 2017 8:40:17 AM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Product implements java.io.Serializable {
 
 	private Integer productId;
+	private Discount discount;
 	private String productName;
 	private String introduction;
 	private String productKind;
@@ -38,20 +39,9 @@ public class Product implements java.io.Serializable {
 	private Integer productQuantity;
 	private Date addedDate;
 	private Date addedTime;
-	private Integer soldQuantity = 0;
-	private Set<Discount> discounts = new HashSet<Discount>(0);
-	private Set<Selectedproduct> selectedproducts = new HashSet<Selectedproduct>(0);
-	private List<Image> images = new ArrayList<Image>();
-//	@Transient
-//	private ArrayList<String> imageLink ;
-//
-//	public ArrayList<String> getImageLink() {
-//		return imageLink;
-//	}
-//
-//	public void setImageLink(ArrayList<String> imageLink) {
-//		this.imageLink = imageLink;
-//	}
+	private Integer soldQuantity;
+	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>(0);
+	private List<Image> images = new ArrayList<Image>(0);
 
 	public Product() {
 	}
@@ -60,9 +50,10 @@ public class Product implements java.io.Serializable {
 		this.productName = productName;
 	}
 
-	public Product(String productName, String introduction, String productKind, String brand, String price,
-			Integer productQuantity, Date addedDate, Date addedTime, Integer soldQuantity, Set<Discount> discounts,
-			Set<Selectedproduct> selectedproducts, List<Image> images) {
+	public Product(Discount discount, String productName, String introduction, String productKind, String brand,
+			String price, Integer productQuantity, Date addedDate, Date addedTime, Integer soldQuantity,
+			List<SelectedProduct> selectedproducts, List<Image> images) {
+		this.discount = discount;
 		this.productName = productName;
 		this.introduction = introduction;
 		this.productKind = productKind;
@@ -72,7 +63,6 @@ public class Product implements java.io.Serializable {
 		this.addedDate = addedDate;
 		this.addedTime = addedTime;
 		this.soldQuantity = soldQuantity;
-		this.discounts = discounts;
 		this.selectedproducts = selectedproducts;
 		this.images = images;
 	}
@@ -87,6 +77,17 @@ public class Product implements java.io.Serializable {
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
+	}
+
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "discountId")
+	public Discount getDiscount() {
+		return this.discount;
+	}
+
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
 	}
 
 	@Column(name = "productName", nullable = false)
@@ -165,9 +166,6 @@ public class Product implements java.io.Serializable {
 
 	@Column(name = "soldQuantity")
 	public Integer getSoldQuantity() {
-//		if (soldQuantity == null) {
-//			setSoldQuantity(0);
-//		}
 		return this.soldQuantity;
 	}
 
@@ -175,27 +173,17 @@ public class Product implements java.io.Serializable {
 		this.soldQuantity = soldQuantity;
 	}
 
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Discount> getDiscounts() {
-		return this.discounts;
-	}
-
-	public void setDiscounts(Set<Discount> discounts) {
-		this.discounts = discounts;
-	}
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Selectedproduct> getSelectedproducts() {
+	public List<SelectedProduct> getSelectedproducts() {
 		return this.selectedproducts;
 	}
 
-	public void setSelectedproducts(Set<Selectedproduct> selectedproducts) {
+	public void setSelectedproducts(List<SelectedProduct> selectedproducts) {
 		this.selectedproducts = selectedproducts;
 	}
 
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
 	public List<Image> getImages() {
 		return this.images;

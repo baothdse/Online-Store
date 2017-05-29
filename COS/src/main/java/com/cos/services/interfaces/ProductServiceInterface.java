@@ -19,4 +19,5 @@ public interface ProductServiceInterface {
 	List<Product> getAllProduct();
 	void updateProductInfo(String introduction, String productKind, String brand, 
 			String price, int productQuantity, Date addedDate, Date addedTime, int productId);
+	
 }

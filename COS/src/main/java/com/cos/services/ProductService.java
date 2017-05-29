@@ -117,6 +117,4 @@ public class ProductService implements ProductServiceInterface {
 		Product product = productRepository.findByProductId(productId);
 		return product;
 	}
-
-	
 }

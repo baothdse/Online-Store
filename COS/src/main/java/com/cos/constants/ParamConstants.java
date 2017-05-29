@@ -29,4 +29,17 @@ public class ParamConstants {
 	public static final String IMAGE_ID = "imageId";
 	public static final String LINK = "link";
 	public static final String MAIN = "main";
+	
+	//discount
+	public static final String DISCOUNT_ID = "discountId";
+	public static final String DISCOUNT_CODE = "discountCode";
+	public static final String AMOUNT = "amount";
+	public static final String START_DATE = "startDate";
+	public static final String END_DATE = "endDate";
+	
+	//cart
+	public static final String CART_ID = "cartId";
+	public static final String TOTAL_PRICE = "totalPrice";
+	public static final String NOTE = "note";
+	public static final String CHECK_OUT = "checkOut";
 }

@@ -1,9 +1,7 @@
 package com.cos.entities;
-// Generated Apr 23, 2017 3:51:12 AM by Hibernate Tools 4.3.1.Final
+// Generated May 25, 2017 8:40:17 AM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +24,7 @@ public class Image implements java.io.Serializable {
 	private Integer imageId;
 	private Product product;
 	private String link;
-	private Boolean main = false;
+	private Boolean main;
 
 	public Image() {
 	}
@@ -71,9 +69,6 @@ public class Image implements java.io.Serializable {
 
 	@Column(name = "main")
 	public Boolean getMain() {
-		if (main == null) {
-			setMain(false);
-		}
 		return this.main;
 	}
 

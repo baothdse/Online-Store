@@ -2,6 +2,16 @@ create database if not exists cosmetic_online_store;
 
 use cosmetic_online_store;
 
+create table Discount (
+discountId int not null auto_increment,
+discountCode varchar(20),
+startDate date, 
+endDate date,
+amount int,
+productId int,
+primary key (discountId)
+);
+
 create table Product (
 productId int not null auto_increment,
 productName varchar(255) not null,
@@ -13,7 +23,9 @@ productQuantity int,
 addedDate date,
 addedTime time,
 soldQuantity int,
-primary key (productId)
+discountId int,
+primary key (productId),
+constraint fk_discount foreign key (discountId) references Discount(discountId) 
 );
 
 create table Image (
@@ -23,27 +35,6 @@ productId int,
 main boolean,
 primary key (imageId),
 constraint fk_product_image foreign key (productId) references Product(productId)
-);
-
-
-create table Discount (
-discountId int not null auto_increment,
-discountCode varchar(20),
-startDate date, 
-endDate date,
-amount varchar(5),
-productId int,
-constraint fk_discount foreign key (productId) references Product(productId),
-primary key (discountId)
-);
-
-
-create table SelectedProduct (
-selectedId int not null auto_increment,
-quantity int,
-productId int,
-primary key(selectedId),
-constraint fk_selected foreign key (productId) references Product(productId)
 );
 
 create table User (
@@ -65,17 +56,24 @@ cartId int not null auto_increment,
 totalPrice varchar(20),
 note text,
 userId int,
-primary key (cartId),
-constraint fk_customer foreign key (userId) references User(userId)
+addedDate date,
+checkOut boolean,
+primary key (cartId)
 );
 
-create table SelectedProductCart (
-selectedId int, 
+create table SelectedProduct (
+selectedId int not null auto_increment,
+quantity int,
+checkOut boolean,
+productId int,
 cartId int,
-primary key (selectedId, cartId),
-constraint fk_selected_cart foreign key (selectedId) references SelectedProduct(selectedId),
+userId int,
+primary key(selectedId),
+constraint fk_selected_by foreign key (userId) references User(userId),
+constraint fk_selected foreign key (productId) references Product(productId),
 constraint fk_cart foreign key (cartId) references Cart(cartId)
 );
+
 
 INSERT INTO `cosmetic_online_store`.`user` (`username`, `password`, `firstName`, `lastName`, `address`, `city`, `email`, `phone`, `roleId`) VALUES ('admin', 'admin', 'bao', 'thd', 'abc', 'hcm', 'bao@gmail.com', '1235567', '1');
 
