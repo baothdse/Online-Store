@@ -25,6 +25,7 @@ public class CartController {
 	
 	@Autowired
 	private SelectedProductServiceInterface selectedProductService;
+
 	
 	@RequestMapping(value = URLConstant.GET_ALL_CART, method = RequestMethod.GET)
 	public ResponseEntity <?> getAllCart() {
@@ -47,4 +48,23 @@ public class CartController {
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = URLConstant.CHECK_OUT, method = RequestMethod.POST)
+	public ResponseEntity<?> checkOut(@RequestParam(ParamConstants.USER_ID) int userId,
+									@RequestParam(ParamConstants.NOTE) String note) {
+		cartServiceInterface.checkOut(userId, note);
+		List<Cart> listOfCartByUser = cartServiceInterface.getCartByUserId(userId);
+		return new ResponseEntity<List<Cart>> (listOfCartByUser, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.GET_CHECKED_OUT_CART, method = RequestMethod.GET)
+	public ResponseEntity<?> getCheckedOutCarts	() {
+		List<Cart> checkedOutCarts = cartServiceInterface.getCheckOutCart();
+		return new ResponseEntity<List<Cart>> (checkedOutCarts, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.GET_CART_DETAIL, method = RequestMethod.GET)
+	public ResponseEntity<?> getCartDetail(@RequestParam(ParamConstants.CART_ID) int cartId) {
+		Cart cartDetail = cartServiceInterface.getCartDetail(cartId);
+		return new ResponseEntity<Cart> (cartDetail, HttpStatus.OK);
+	}
 }
