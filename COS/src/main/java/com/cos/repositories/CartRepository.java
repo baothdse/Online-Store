@@ -3,6 +3,7 @@ package com.cos.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -12,7 +13,15 @@ public interface CartRepository extends JpaRepository<Cart, Integer>  {
 	@Query("select c from Cart c where c.userId = :userId and c.checkOut = false")
 	List<Cart> findByUser(@Param("userId") int userId);
 	List<Cart> findAllByOrderByAddedDateDesc();
+	
 	@Query("select c from Cart c where c.checkOut = true")
 	List<Cart> getCheckOutCart();
+	
 	Cart findByCartId(int cartId);
+	
+	@Query("select c from Cart c where c.userId = :userId and c.checkOut = true")
+	List<Cart> getCheckOutCartByUser(int userId);
+	
+	@Modifying
+	void setTotalPriceByCartId(String totalPrice, int cartId);
 }

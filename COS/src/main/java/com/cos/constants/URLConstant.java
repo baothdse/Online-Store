@@ -23,6 +23,7 @@ public class URLConstant {
 	public static final String DISCOUNT_URL = "/discount";
 	public static final String ADD_DISCOUNT_URL = "/add-discount";
 	public static final String DEL_DISCOUNT_URL = "/del-discount";
+	public static final String APPLY_DISCOUNT = "apply-discount";
 	
 	//cart
 	public static final String CART_URL = "/cart";
@@ -31,5 +32,22 @@ public class URLConstant {
 	public static final String ADD_PRODUCT_TO_CART = "/add-product-to-cart";
 	public static final String CHECK_OUT = "/check-out";
 	public static final String GET_CHECKED_OUT_CART = "/checked-out";
+	public static final String GET_CHECKED_OUT_CART_BY_USER = "/checked-out-by-id";
 	public static final String GET_CART_DETAIL = "/detail";
+	public static final String REMOVE_PRODUCT = "/remove-product";
+	
+	//selected product
+	public static final String SELECT_PRODUCT = "/selected-product";
+	
+	//new
+	public static final String NEWS = "/news";
+	public static final String ADD_NEWS = "/add-news";
+	public static final String DELETE_NEW = "/del-new";
+	public static final String GET_4_NEWS = "/get-4-news";
+	
+	//video
+	public static final String VIDEO = "/video";
+	public static final String ADD_VIDEO = "/add-video";
+	public static final String DELETE_VIDEO = "/delete-video";
+	
 }

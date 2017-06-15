@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated May 25, 2017 8:40:17 AM by Hibernate Tools 4.3.1.Final
+// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -33,13 +33,16 @@ public class User implements java.io.Serializable {
 	private String email;
 	private String phone;
 	private Integer roleId;
-	private List<SelectedProduct> selectedProducts = new ArrayList<SelectedProduct>(0);
+	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>();
+	private List<News> newses = new ArrayList<News>();
+	private List<Videos> videoses = new ArrayList<Videos>();
 
 	public User() {
 	}
 
 	public User(String username, String password, String firstName, String lastName, String address, String city,
-			String email, String phone, Integer roleId, List<SelectedProduct> selectedProducts) {
+			String email, String phone, Integer roleId, List<SelectedProduct> selectedproducts, List<News> newses,
+			List<Videos> videoses) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -49,7 +52,9 @@ public class User implements java.io.Serializable {
 		this.email = email;
 		this.phone = phone;
 		this.roleId = roleId;
-		this.selectedProducts = selectedProducts;
+		this.selectedproducts = selectedproducts;
+		this.newses = newses;
+		this.videoses = videoses;
 	}
 
 	@Id
@@ -147,12 +152,30 @@ public class User implements java.io.Serializable {
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public List<SelectedProduct> getSelectedProducts() {
-		return this.selectedProducts;
+	public List<SelectedProduct> getSelectedproducts() {
+		return this.selectedproducts;
 	}
 
-	public void setSelectedProducts(List<SelectedProduct> selectedProducts) {
-		this.selectedProducts = selectedProducts;
+	public void setSelectedproducts(List<SelectedProduct> selectedproducts) {
+		this.selectedproducts = selectedproducts;
+	}
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public List<News> getNewses() {
+		return this.newses;
+	}
+
+	public void setNewses(List<News> newses) {
+		this.newses = newses;
+	}
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public List<Videos> getVideoses() {
+		return this.videoses;
+	}
+
+	public void setVideoses(List<Videos> videoses) {
+		this.videoses = videoses;
 	}
 
 }

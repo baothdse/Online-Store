@@ -49,18 +49,8 @@ public class CartService implements CartServiceInterface {
 		List<SelectedProduct> selectedProducts = selectedRepository.findByUserId(userId); 
 		List<Cart> listOfCartByUser = cartRepository.findByUser(userId);
 		Calendar cal = Calendar.getInstance();
-		Cart cart = null;
-		if (cartRepository.findByUser(userId).size() == 0) {
-			cart = createCart();
-		} else {
-			for (int index = 0; index < listOfCartByUser.size(); index++) {
-				if (listOfCartByUser.get(index).getCheckOut() == false) {
-					cart = listOfCartByUser.get(index);
-				} else {
-					cart = createCart();
-				}
-			}
-		}
+		Cart cart = validateCart(listOfCartByUser);
+		
 		cart.setUserId(userId);
 		selectedProducts.get(selectedProducts.size() - 1).setCart(cart);
 		int totalPrice = calculateTotalPrice(selectedProducts);
@@ -71,13 +61,36 @@ public class CartService implements CartServiceInterface {
 	}
 	
 	@Override
+	public Cart validateCart(List<Cart> listOfCartByUser) {
+		Cart cart = null;
+		if (listOfCartByUser.size() == 0) {
+			cart = createCart();
+		} else {
+			for (int index = 0; index < listOfCartByUser.size(); index++) {
+				if (listOfCartByUser.get(index).getCheckOut() == false) {
+					cart = listOfCartByUser.get(index);
+				} else {
+					cart = createCart();
+				}
+			}
+		}
+		return cart;
+	} 
+	
+	@Override
 	public int calculateTotalPrice(List<SelectedProduct> selectedProducts) {
 		// TODO Auto-generated method stub
 		int totalPrice = 0;
 		for (int index = 0; index < selectedProducts.size(); index++) {
 			if (selectedProducts.get(index).getCheckOut() == false) {
 				int price = Integer.parseInt(selectedProducts.get(index).getProduct().getPrice());
-				totalPrice += selectedProducts.get(index).getQuantity() * price;
+				if (selectedProducts.get(index).getProduct().getDiscount() != null) {
+					int priceAfterDiscount = price - 
+							(price * selectedProducts.get(index).getProduct().getDiscount().getAmount())/100;
+					totalPrice += selectedProducts.get(index).getQuantity() * priceAfterDiscount;
+				} else {
+					totalPrice += selectedProducts.get(index).getQuantity() * price; 
+				}
 			}
 		}
 		return totalPrice;
@@ -108,5 +121,14 @@ public class CartService implements CartServiceInterface {
 		// TODO Auto-generated method stub
 		Cart cart = cartRepository.findByCartId(cartId);
 		return cart;
-	} 
+	}
+
+	//used for user
+	@Override
+	public List<Cart> getCheckOutCartByUserId(int userId) {
+		// TODO Auto-generated method stub
+		List<Cart> checkedOutCarts = cartRepository.getCheckOutCartByUser(userId);
+		return checkedOutCarts;
+	}
+
 }

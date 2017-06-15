@@ -34,5 +34,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	void setProductInfoById (String introduction, String productKind, String brand, 
 			String price, int productQuantity, Date addedDate, Date addedTime, int productId);
 	
-	
+	@Modifying
+	@Query("update Product p set p.discount.discountId = ?1 where p.productId = ?2")
+	void setDiscountByProductId(int discountId, int productId);
 }

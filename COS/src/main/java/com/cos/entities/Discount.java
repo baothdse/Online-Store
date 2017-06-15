@@ -1,11 +1,11 @@
 package com.cos.entities;
-// Generated May 25, 2017 8:40:17 AM by Hibernate Tools 4.3.1.Final
+// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,13 +32,13 @@ public class Discount implements java.io.Serializable {
 	private Date endDate;
 	private Integer amount;
 	private Integer productId;
-	private Set<Product> products = new HashSet<Product>(0);
+	private List<Product> products = new ArrayList<Product>();
 
 	public Discount() {
 	}
 
 	public Discount(String discountCode, Date startDate, Date endDate, Integer amount, Integer productId,
-			Set<Product> products) {
+			List<Product> products) {
 		this.discountCode = discountCode;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -108,11 +108,11 @@ public class Discount implements java.io.Serializable {
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "discount")
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return this.products;
 	}
 
-	public void setProducts(Set<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 

@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated May 25, 2017 8:40:17 AM by Hibernate Tools 4.3.1.Final
+// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -86,9 +86,6 @@ public class SelectedProduct implements java.io.Serializable {
 
 	@Column(name = "quantity")
 	public Integer getQuantity() {
-		if (quantity == null) {
-			setQuantity(0);
-		}
 		return this.quantity;
 	}
 

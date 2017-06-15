@@ -1,7 +1,6 @@
 create database if not exists cosmetic_online_store;
 
 use cosmetic_online_store;
-
 create table Discount (
 discountId int not null auto_increment,
 discountCode varchar(20),
@@ -74,7 +73,26 @@ constraint fk_selected foreign key (productId) references Product(productId),
 constraint fk_cart foreign key (cartId) references Cart(cartId)
 );
 
+create table News(
+newId int not null auto_increment,
+header text,
+content text,
+addedDate date,
+addedTime time,
+userId int,
+primary key (newId),
+constraint fk_user_news foreign key (userId) references User(userId)
+);
 
+create table Videos(
+videoId int,
+link text,
+addedDate date,
+addedTime time,
+userId int,
+primary key (videoId),
+constraint fk_user_video foreign key (userId) references User(userId)
+);
 INSERT INTO `cosmetic_online_store`.`user` (`username`, `password`, `firstName`, `lastName`, `address`, `city`, `email`, `phone`, `roleId`) VALUES ('admin', 'admin', 'bao', 'thd', 'abc', 'hcm', 'bao@gmail.com', '1235567', '1');
 
 /*product*/

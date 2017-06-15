@@ -26,4 +26,6 @@ public interface SelectedProductRepository extends JpaRepository<SelectedProduct
 	@Query("update SelectedProduct sp set sp.cart = ?1 where sp.user.userId = ?2 and "
 			+ "sp.checkOut = false")
 	List<SelectedProduct> setCartForSelectedProduct(Cart cart, int userId);
+	
+	SelectedProduct findBySelectedId(int selectedId);
 }

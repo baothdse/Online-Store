@@ -42,4 +42,15 @@ public class ParamConstants {
 	public static final String TOTAL_PRICE = "totalPrice";
 	public static final String NOTE = "note";
 	public static final String CHECK_OUT = "checkOut";
+	
+	//new
+	public static final String NEW_ID = "newId";
+	public static final String HEADER = "header";
+	public static final String CONTENT = "content";
+	
+	//video
+	public static final String VIDEO_ID = "videoId";
+	
+	//selected product
+	public static final String SELECTED_ID = "selectedId";
 }

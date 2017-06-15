@@ -31,7 +31,6 @@ public class UserService implements UserServiceInterface {
 		// TODO Auto-generated method stub
 		User user = new User();
 		if (userRepository.findByUsername(username) == null) {
-			
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setFirstName(firstName);

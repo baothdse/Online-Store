@@ -16,7 +16,9 @@
         <mapping class="com.cos.entities.Image" />
         <mapping class="com.cos.entities.Cart" />
         <mapping class="com.cos.entities.Discount" />
+        <mapping class="com.cos.entities.News" />
         <mapping class="com.cos.entities.Product" />
         <mapping class="com.cos.entities.User" />
+        <mapping class="com.cos.entities.Videos" />
     </session-factory>
 </hibernate-configuration>

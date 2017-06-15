@@ -1,6 +1,7 @@
 package com.cos.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,18 @@ public class DiscountController {
 	public ResponseEntity<?> deleteImage(@RequestParam(ParamConstants.DISCOUNT_ID) int discountId) {
 		discountServiceInterface.deleteDiscount(discountId);
 		return new ResponseEntity<String> (HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = URLConstant.APPLY_DISCOUNT, method = RequestMethod.POST)
+	public ResponseEntity<?> applyDiscount(@RequestParam(ParamConstants.DISCOUNT_ID) int discountId,
+										@RequestParam("listProduct") ArrayList<String> listProduct) {
+		ArrayList<Integer> listProductId = new ArrayList<Integer>();
+		for (int index = 0; index < listProduct.size(); index++) {
+			
+			listProductId.add(Integer.parseInt(listProduct.get(index)));
+		}
+		discountServiceInterface.applyDiscount(discountId, listProductId);
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 	
 }
