@@ -23,5 +23,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer>  {
 	List<Cart> getCheckOutCartByUser(int userId);
 	
 	@Modifying
+	@Query("update Cart c set c.totalPrice = ?1 where c.cartId = ?2")
 	void setTotalPriceByCartId(String totalPrice, int cartId);
 }

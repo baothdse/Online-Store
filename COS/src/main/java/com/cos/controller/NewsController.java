@@ -29,7 +29,7 @@ public class NewsController {
 		return new ResponseEntity<News>(addedNew, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = URLConstant.GET_4_NEWS, method = RequestMethod.GET)
+	@RequestMapping(value = URLConstant.GET_3_NEWS, method = RequestMethod.GET)
 	public ResponseEntity<?> get4News() {
 		List<News> top4News = newServiceInterface.get4LatestNews();
 		return new ResponseEntity <List<News>>(top4News, HttpStatus.OK);

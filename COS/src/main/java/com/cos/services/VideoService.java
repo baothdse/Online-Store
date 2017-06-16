@@ -1,6 +1,7 @@
 package com.cos.services;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class VideoService implements VideoServiceInterface{
 	public void deleteVideo(int videoId) {
 		// TODO Auto-generated method stub
 		videoRepository.delete(videoRepository.findByVideoId(videoId));
+	}
+
+	@Override
+	public List<Videos> get2LatestVideo() {
+		List<Videos> top2Videos = videoRepository.findTop2Videos();
+		return top2Videos;
 	}
 
 }

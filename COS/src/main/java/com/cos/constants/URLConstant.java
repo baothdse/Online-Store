@@ -43,11 +43,12 @@ public class URLConstant {
 	public static final String NEWS = "/news";
 	public static final String ADD_NEWS = "/add-news";
 	public static final String DELETE_NEW = "/del-new";
-	public static final String GET_4_NEWS = "/get-4-news";
+	public static final String GET_3_NEWS = "/get-3-news";
 	
 	//video
 	public static final String VIDEO = "/video";
 	public static final String ADD_VIDEO = "/add-video";
 	public static final String DELETE_VIDEO = "/delete-video";
+	public static final String GET_2_VIDEO = "/get-2-videos";
 	
 }

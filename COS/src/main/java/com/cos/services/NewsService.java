@@ -38,7 +38,7 @@ public class NewsService implements NewsServiceInterface {
 	@Override
 	public List<News> get4LatestNews() {
 		// TODO Auto-generated method stub
-		List<News> top4News = newsRepository.findTop4ByOrderByAddedDateDesAndAddedTimeDes();
+		List<News> top4News = newsRepository.findTop3News();
 		return top4News;
 	}
 

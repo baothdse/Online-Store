@@ -113,20 +113,23 @@ INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`b
 INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`brand`,`price`,`productQuantity`,`addedDate`,`addedTime`,`soldQuantity`) VALUES (15,'SỮA RỬA MẶT KHOÁNG NÚI LỬA','abc','abc','abc','100000',20,'2017-05-01','16:00:12',0);
 
 /*image */
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (1,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17352104_444388265902964_5551151152245435609_n.jpg?oh=3d25c0dea8bce921ca73d70983e3ebf1&oe=59978D47',1,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (2,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457884_444388322569625_770694559152670146_n.jpg?oh=7832af1c7015d4aece938262b172d570&oe=597DBA97',2,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (3,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457285_444388325902958_6212256126563619744_n.jpg?oh=049d7664e614e9917644827ef4eda51c&oe=5998585A',3,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (4,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17309056_444388369236287_493899620693510761_n.jpg?oh=0ea8059b3aaf237508575c3fc89d4b54&oe=5985717F',4,0);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (5,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17309056_444388369236287_493899620693510761_n.jpg?oh=0ea8059b3aaf237508575c3fc89d4b54&oe=5985717F',5,0);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (6,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457285_444388325902958_6212256126563619744_n.jpg?oh=049d7664e614e9917644827ef4eda51c&oe=5998585A',6,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (7,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17342862_444388269236297_1812221224917934266_n.jpg?oh=e8015127128ccf32a4bc50e79c46ee2f&oe=5984F3FC',7,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (8,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17309320_444388279236296_4794419611602204582_n.jpg?oh=1ed8058a1b471f285d9f622b8c9461d8&oe=598E0925',8,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (1,'https://www.seeklogo.net/wp-content/uploads/2016/05/instagram-icon-logo-vector-download.jpg',1,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (2,'https://www.seeklogo.net/wp-content/uploads/2016/11/wechat-logo-preview.png',2,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (3,'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Microsoft_Skype_for_Business_logo.svg/2000px-Microsoft_Skype_for_Business_logo.svg.png',3,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (4,'https://www.seeklogo.net/wp-content/uploads/2016/11/twitter-icon-circle-blue-logo-preview.png',4,0);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (5,'https://facebookbrand.com/wp-content/themes/fb-branding/prj-fb-branding/assets/images/fb-art.png',5,0);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (6,'https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png',6,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (7,'http://www.okclipart.com/img112/qwrzspaugbfluvvkjcne.png',7,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (8,'http://logos-download.com/wp-content/uploads/2016/05/Xiaomi_logo.png',8,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (9,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17425883_444388445902946_840160261761131966_n.jpg?oh=2c4cd3a7202cc63d94b8ca302cde04ac&oe=59984B04',9,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (10,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17426329_444388485902942_5602682544270258837_n.jpg?oh=80ec727cb7e7393e177ed7e2d8b05bb7&oe=5989E89A',10,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (11,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457514_444388472569610_7480762216035585724_n.jpg?oh=4db015e4020aecf6121cfc50369fb371&oe=59760498',11,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (12,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',12,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (13,'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/17457674_444388365902954_1092747493647799506_n.jpg?oh=a54f1c02abf888cd88dfed81d0743c18&oe=597F3656',13,1);
 INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (14,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',14,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (15,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',15,1);
-INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (16,'https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.0-9/17424924_444388272569630_5881678812592811070_n.jpg?oh=4394efb206ba1d2aef3f669d3b3b2bb3&oe=5982F6D3',15,0);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (15,'https://wiki.videolan.org/images/Ubuntu-logo.png',15,1);
+INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (16,'https://wiki.videolan.org/images/Ubuntu-logo.png',15,0);
 
+/*video*/
+INSERT INTO `videos` (`videoId`,`link`,`addedDate`,`addedTime`,`userId`) VALUES (1,'https://youtu.be/NlrYn_dZdqk','2017-06-16','16:09:00',1);
+INSERT INTO `videos` (`videoId`,`link`,`addedDate`,`addedTime`,`userId`) VALUES (2,'https://youtu.be/QNnLqF4R0l4','2017-06-16','16:10:00',1);

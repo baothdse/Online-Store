@@ -1,5 +1,7 @@
 package com.cos.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +33,10 @@ public class VideoController {
 		String status = "Delete successful";
 		videoServiceInterface.deleteVideo(videoId);
 		return new ResponseEntity<String>(status, HttpStatus.OK);
-}
+	}
+	@RequestMapping(value = URLConstant.GET_2_VIDEO, method = RequestMethod.GET)
+	public ResponseEntity<?> get2LatestVideo() {
+		List<Videos> top2Videos = videoServiceInterface.get2LatestVideo();
+		return new ResponseEntity <List<Videos>>(top2Videos, HttpStatus.OK);
+	}
 }
