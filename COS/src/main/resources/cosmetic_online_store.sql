@@ -85,7 +85,7 @@ constraint fk_user_news foreign key (userId) references User(userId)
 );
 
 create table Videos(
-videoId int,
+videoId int not null auto_increment,
 link text,
 addedDate date,
 addedTime time,
