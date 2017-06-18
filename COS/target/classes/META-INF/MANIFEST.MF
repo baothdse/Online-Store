@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: COS
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: BaoTHD
+Built-By: BAOTHDSE61666
 Implementation-Vendor-Id: COS
 Build-Jdk: 1.8.0_111
 Implementation-URL: http://projects.spring.io/spring-boot/COS/
