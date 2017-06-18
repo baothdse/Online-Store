@@ -3,8 +3,6 @@ package com.cos.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.facebook.api.Facebook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,16 +17,9 @@ import com.cos.services.interfaces.UserServiceInterface;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	@Autowired
-	private Facebook facebook;
-	@Autowired
-	private ConnectionRepository connectionRepository;
+
 	@Autowired
 	private UserServiceInterface userService;
-	public UserController(Facebook facebook, ConnectionRepository connectionRepository) {
-        this.facebook = facebook;
-        this.connectionRepository = connectionRepository;
-    }
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> login(@RequestParam(ParamConstants.USERNAME) String username,
@@ -59,10 +50,5 @@ public class UserController {
 			return new ResponseEntity<Error> (error, HttpStatus.OK);
 		}
 	}
-	
-	@RequestMapping(value = "/facebook", method = RequestMethod.POST)
-	public ResponseEntity<?> loginUsingFacebook(@RequestParam(value = "accessToken") String accessToken) {
-		User user = userService.loginUsingFacebook(facebook);
-		return new ResponseEntity<User> (user, HttpStatus.OK);
-	}
+
 }
