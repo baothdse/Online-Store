@@ -19,8 +19,7 @@ datasource:
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect
 
-security:
-  oauth2:
+facebook:
     client:
       clientId: 162843850906748
       clientSecret: 8bc3a3a6abf3b46daf3c708de2ea3997

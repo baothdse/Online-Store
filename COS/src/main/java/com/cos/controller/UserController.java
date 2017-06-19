@@ -1,8 +1,11 @@
 package com.cos.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.social.facebook.api.Facebook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +16,7 @@ import com.cos.constants.ParamConstants;
 import com.cos.entities.User;
 import com.cos.errors.Error;
 import com.cos.services.interfaces.UserServiceInterface;
+import com.mysql.jdbc.Connection;
 
 @RestController
 @RequestMapping("/user")
@@ -50,5 +54,6 @@ public class UserController {
 			return new ResponseEntity<Error> (error, HttpStatus.OK);
 		}
 	}
+
 
 }

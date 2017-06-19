@@ -82,5 +82,11 @@ public class CartController {
 		Cart cart = cartServiceInterface.getCartDetail(cartId);
 		return new ResponseEntity<Cart> (cart, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/get-cart-by-user", method = RequestMethod.GET)
+	public ResponseEntity<?> getCartByUser(@RequestParam(ParamConstants.USER_ID) int userId) {
+		List<Cart> listOfCart = cartServiceInterface.getCartByUserId(userId);
+		return new ResponseEntity<List<Cart>> (listOfCart, HttpStatus.OK);
+	}
 			
 }
