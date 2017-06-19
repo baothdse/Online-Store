@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.constants.ErrorConstants;
 import com.cos.constants.ParamConstants;
+import com.cos.constants.URLConstant;
 import com.cos.entities.User;
 import com.cos.errors.Error;
 import com.cos.services.interfaces.UserServiceInterface;
@@ -49,6 +50,12 @@ public class UserController {
 		} else {
 			return new ResponseEntity<Error> (error, HttpStatus.OK);
 		}
+	}
+	
+	@RequestMapping(value = URLConstant.GET_USER_BY_ID, method = RequestMethod.GET)
+	public ResponseEntity<?> getUserById(@RequestParam(ParamConstants.USER_ID) int userId) {
+		User user = userService.getUserById(userId);
+		return new ResponseEntity<User> (user, HttpStatus.OK);
 	}
 
 }

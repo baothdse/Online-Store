@@ -50,6 +50,13 @@ public class UserService implements UserServiceInterface {
 		}
 	}
 
+	@Override
+	public User getUserById(int userId) {
+		// TODO Auto-generated method stub
+		User user = userRepository.findByUserId(userId);
+		return user;
+	}
+
 //	@Override
 //	public User loginUsingFacebook(Facebook facebook) {
 //		// TODO Auto-generated method stub

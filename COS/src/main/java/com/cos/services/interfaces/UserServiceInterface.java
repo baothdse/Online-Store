@@ -9,4 +9,5 @@ public interface UserServiceInterface {
 	
 //	User loginUsingFacebook(Facebook facebook);
 //	User registerUsingFacebook(Facebook facebook);
+	User getUserById(int userId);
 }

@@ -51,4 +51,7 @@ public class URLConstant {
 	public static final String DELETE_VIDEO = "/delete-video";
 	public static final String GET_2_VIDEO = "/get-2-videos";
 	
+	
+	// user
+	public static final String GET_USER_BY_ID = "/get-user-by-id";
 }
