@@ -40,12 +40,6 @@ create table User (
 userId int not null auto_increment,
 username varchar(255),
 password varchar(255),
-firstName varchar(255),
-lastName varchar(255),
-address varchar(255),
-city varchar(255),
-email varchar(255),
-phone varchar(20),
 roleId int,
 primary key(userId)
 );
@@ -53,11 +47,21 @@ primary key(userId)
 create table Cart (
 cartId int not null auto_increment,
 totalPrice varchar(20),
-note text,
-userId int,
-addedDate date,
 checkOut boolean,
 primary key (cartId)
+);
+
+create table CartDetail (
+cartId int not null,
+fullName varchar(255),
+address varchar(255),
+city varchar(255),
+email varchar(255),
+phone varchar(20),
+addedDate date,
+addedTime time,
+primary key (cartId),
+constraint fk_cart_detail foreign key (cartId) references Cart(cartId)
 );
 
 create table SelectedProduct (
@@ -66,9 +70,7 @@ quantity int,
 checkOut boolean,
 productId int,
 cartId int,
-userId int,
 primary key(selectedId),
-constraint fk_selected_by foreign key (userId) references User(userId),
 constraint fk_selected foreign key (productId) references Product(productId),
 constraint fk_cart foreign key (cartId) references Cart(cartId)
 );
@@ -93,7 +95,7 @@ userId int,
 primary key (videoId),
 constraint fk_user_video foreign key (userId) references User(userId)
 );
-INSERT INTO `cosmetic_online_store`.`user` (`username`, `password`, `firstName`, `lastName`, `address`, `city`, `email`, `phone`, `roleId`) VALUES ('admin', 'admin', 'bao', 'thd', 'abc', 'hcm', 'bao@gmail.com', '1235567', '1');
+INSERT INTO `cosmetic_online_store`.`user` (`username`, `password`, `roleId`) VALUES ('admin', 'admin', '1');
 
 /*product*/
 INSERT INTO `product` (`productId`,`productName`,`introduction`,`productKind`,`brand`,`price`,`productQuantity`,`addedDate`,`addedTime`,`soldQuantity`) VALUES (1,'KEM DƯỠNG CHIẾT XUẤT CÚC LA MÃ','Dưỡng trắng da bằng Vitamin B3 nồng độ cao, cho da sáng màu mà không bào mòn hoặc tổn hại đến da. Chất kem nhẹ, mịn dễ thấm vào da, nuôi dưỡng da khỏe từ bên trong. Với chiết xuất cúc la mã, kem hoàn toàn dịu nhẹ cho da nhạy cảm. Kem phù hợp với da dầu lẫn da khô, hỗ trợ giảm các đốm nâu trên da hiệu quả. ','Body','Narguirite','100000',100,'2017-04-21','18:37:00',0);
