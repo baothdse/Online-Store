@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cos.entities.Cart;
 import com.cos.entities.Product;
 import com.cos.entities.SelectedProduct;
-import com.cos.entities.User;
 import com.cos.repositories.CartRepository;
 import com.cos.repositories.ProductRepository;
 import com.cos.repositories.SelectedProductRepository;
@@ -27,21 +26,16 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 	private ProductRepository productRepository;
 	
 	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
 	private CartRepository cartRepository;
 	
 	@Override
-	public SelectedProduct selectProduct(int userId, int productId, int quantity) {
+	public SelectedProduct selectProduct(int productId, int quantity) {
 		// TODO Auto-generated method stub
 		SelectedProduct selectedProduct = new SelectedProduct();
 		Product product = productRepository.findByProductId(productId);
-		User user = userRepository.findByUserId(userId);
 		
 		selectedProduct.setProduct(product);
 		selectedProduct.setQuantity(quantity);
-		selectedProduct.setUser(user);
 		selectedProductRepository.save(selectedProduct);
 		return selectedProduct;
 	
@@ -69,6 +63,12 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 			totalPrice += totalPrice;
 		}
 		return totalPrice;
+	}
+
+	@Override
+	public SelectedProduct getSelectedById(int selectedId) {
+		// TODO Auto-generated method stub
+		return selectedProductRepository.findBySelectedId(selectedId);
 	}
 
 }

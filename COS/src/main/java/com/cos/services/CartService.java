@@ -21,7 +21,7 @@ public class CartService implements CartServiceInterface {
 	private CartRepository cartRepository;
 	@Autowired
 	private SelectedProductRepository selectedRepository;
-	
+
 	@Override
 	public List<Cart> getAllCart() {
 		// TODO Auto-generated method stub
@@ -37,60 +37,44 @@ public class CartService implements CartServiceInterface {
 	}
 
 	@Override
-	public List<Cart> getCartByUserId(int userId) {
+	public Cart addSelectedProductToCart(int selectedId) {
 		// TODO Auto-generated method stub
-		List<Cart> cart = cartRepository.findByUser(userId);
+		SelectedProduct selected = selectedRepository.findBySelectedId(selectedId);
+		Cart cart = new Cart();
+		selected.setCart(cart);
+		cart.getSelectedproducts().add(selected);
+		int totalPrice = Integer.parseInt(selected.getProduct().getPrice()) * selected.getQuantity();
+		cart.setTotalPrice(String.valueOf(totalPrice));
+		cartRepository.save(cart);
 		return cart;
 	}
 
 	@Override
-	public Cart addSelectedProductToCart(int userId) {
+	public Cart updateCart(int selectedId, int cartId) {
 		// TODO Auto-generated method stub
-		List<SelectedProduct> selectedProducts = selectedRepository.findByUserId(userId); 
-		List<Cart> listOfCartByUser = cartRepository.findByUser(userId);
-		Calendar cal = Calendar.getInstance();
-		Cart cart = validateCart(listOfCartByUser);
-		
-		cart.setUserId(userId);
-		selectedProducts.get(selectedProducts.size() - 1).setCart(cart);
-		int totalPrice = calculateTotalPrice(selectedProducts);
+		Cart cart = cartRepository.findByCartId(cartId);
+		SelectedProduct selected = selectedRepository.findBySelectedId(selectedId);
+		selected.setCart(cart);
+		cart.getSelectedproducts().add(selected);
+		//System.out.println("bao bao" + cart.getSelectedproducts().size());
+		int totalPrice = calculateTotalPrice(cart.getSelectedproducts());
+		cartRepository.setTotalPriceByCartId(String.valueOf(totalPrice), cartId);
 		cart.setTotalPrice(String.valueOf(totalPrice));
-		cart.setAddedDate(cal.getTime());
-		cartRepository.save(cart);
 		return cart;
 	}
-	
-	@Override
-	public Cart validateCart(List<Cart> listOfCartByUser) {
-		Cart cart = null;
-		if (listOfCartByUser.size() == 0) {
-			cart = createCart();
-		} else {
-			for (int index = 0; index < listOfCartByUser.size(); index++) {
-				if (listOfCartByUser.get(index).getCheckOut() == false) {
-					cart = listOfCartByUser.get(index);
-				} else {
-					cart = createCart();
-				}
-			}
-		}
-		return cart;
-	} 
-	
+
 	@Override
 	public int calculateTotalPrice(List<SelectedProduct> selectedProducts) {
 		// TODO Auto-generated method stub
 		int totalPrice = 0;
 		for (int index = 0; index < selectedProducts.size(); index++) {
-			if (selectedProducts.get(index).getCheckOut() == false) {
-				int price = Integer.parseInt(selectedProducts.get(index).getProduct().getPrice());
-				if (selectedProducts.get(index).getProduct().getDiscount() != null) {
-					int priceAfterDiscount = price - 
-							(price * selectedProducts.get(index).getProduct().getDiscount().getAmount())/100;
-					totalPrice += selectedProducts.get(index).getQuantity() * priceAfterDiscount;
-				} else {
-					totalPrice += selectedProducts.get(index).getQuantity() * price; 
-				}
+			int price = Integer.parseInt(selectedProducts.get(index).getProduct().getPrice());
+			if (selectedProducts.get(index).getProduct().getDiscount() != null) {
+				int priceAfterDiscount = price
+						- (price * selectedProducts.get(index).getProduct().getDiscount().getAmount()) / 100;
+				totalPrice += selectedProducts.get(index).getQuantity() * priceAfterDiscount;
+			} else {
+				totalPrice += selectedProducts.get(index).getQuantity() * price;
 			}
 		}
 		return totalPrice;
@@ -98,15 +82,14 @@ public class CartService implements CartServiceInterface {
 
 	@Override
 	public void checkOut(int userId, String note) {
-		// TODO Auto-generated method stub
-		List<Cart> listOfCartByUser = cartRepository.findByUser(userId);
-		for (int index = 0; index < listOfCartByUser.size(); index++) {
-			listOfCartByUser.get(index).setNote(note);
-			listOfCartByUser.get(index).setCheckOut(true);
-			for (SelectedProduct selected : listOfCartByUser.get(index).getSelectedproducts()) {
-				selectedRepository.setCheckOutBySelectedId(selected.getSelectedId());
-			}
-		}	
+//		// TODO Auto-generated method stub
+//		List<Cart> listOfCartByUser = cartRepository.findByUser(userId);
+//		for (int index = 0; index < listOfCartByUser.size(); index++) {
+//			listOfCartByUser.get(index).setCheckOut(true);
+//			for (SelectedProduct selected : listOfCartByUser.get(index).getSelectedproducts()) {
+//				selectedRepository.setCheckOutBySelectedId(selected.getSelectedId());
+//			}
+//		}
 	}
 
 	@Override
@@ -121,14 +104,6 @@ public class CartService implements CartServiceInterface {
 		// TODO Auto-generated method stub
 		Cart cart = cartRepository.findByCartId(cartId);
 		return cart;
-	}
-
-	//used for user
-	@Override
-	public List<Cart> getCheckOutCartByUserId(int userId) {
-		// TODO Auto-generated method stub
-		List<Cart> checkedOutCarts = cartRepository.getCheckOutCartByUser(userId);
-		return checkedOutCarts;
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cos.constants.ParamConstants;
 import com.cos.constants.URLConstant;
 import com.cos.entities.Cart;
+import com.cos.entities.SelectedProduct;
 import com.cos.services.interfaces.CartServiceInterface;
 import com.cos.services.interfaces.SelectedProductServiceInterface;
 
@@ -33,28 +34,36 @@ public class CartController {
 //		return new ResponseEntity<List<Cart>> (listOfCart, HttpStatus.OK);
 //	}
 //	
-//	@RequestMapping( value = URLConstant.GET_CART_BY_USER, method = RequestMethod.GET)
-//	public ResponseEntity <?> getCartById(@RequestParam(ParamConstants.CART_ID) int userId) {
-//		List<Cart> cart = cartServiceInterface.getCartByUserId(userId);
-//		return new ResponseEntity<List<Cart>> (cart, HttpStatus.OK);
-//	}
 	
 	@RequestMapping(value = URLConstant.ADD_PRODUCT_TO_CART, method = RequestMethod.POST)
-	public ResponseEntity<?> addProductToCart(@RequestParam(ParamConstants.USER_ID) int userId,
-											@RequestParam(ParamConstants.PRODUCT_ID) int productId,
-											@RequestParam(ParamConstants.PRODUCT_QUANTITY) int quantity) {
-		selectedProductService.selectProduct(userId, productId, quantity);
-		Cart cart = cartServiceInterface.addSelectedProductToCart(userId);
+	public ResponseEntity<?> addProductToCart(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
+											@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity) {
+		SelectedProduct selectedProduct = selectedProductService.selectProduct(productId, quantity);
+		Cart cart = cartServiceInterface.addSelectedProductToCart(selectedProduct.getSelectedId());
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.CHECK_OUT, method = RequestMethod.POST)
-	public ResponseEntity<?> checkOut(@RequestParam(ParamConstants.USER_ID) int userId,
-									@RequestParam(ParamConstants.NOTE) String note) {
-		cartServiceInterface.checkOut(userId, note);
-		List<Cart> listOfCartByUser = cartServiceInterface.getCartByUserId(userId);
-		return new ResponseEntity<List<Cart>> (listOfCartByUser, HttpStatus.OK);
+	@RequestMapping(value = URLConstant.UPDATE_CART, method = RequestMethod.POST)
+	public ResponseEntity<?> updateCart(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
+										@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity,
+										@RequestParam(ParamConstants.CART_ID) int cartId){
+		SelectedProduct selectedProduct = selectedProductService.selectProduct(productId, quantity);
+		Cart cart = cartServiceInterface.updateCart(selectedProduct.getSelectedId(), cartId);
+		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
+	
+//	@RequestMapping(value = URLConstant.CHECK_OUT, method = RequestMethod.POST)
+//	public ResponseEntity<?> checkOut(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
+//									@RequestParam(ParamConstants.PRODUCT_QUANTITY) int quantity,
+//									@RequestParam(ParamConstants.FULL_NAME) String fullName,
+//									@RequestParam(ParamConstants.ADDRESS) String address,
+//									@RequestParam(ParamConstants.CITY) String city,
+//									@RequestParam(ParamConstants.EMAIL) String email,
+//									@RequestParam(ParamConstants.PHONE) String phone) {
+//		cartServiceInterface.checkOut(userId, note);
+//		List<Cart> listOfCartByUser = cartServiceInterface.getCartByUserId(userId);
+//		return new ResponseEntity<List<Cart>> (listOfCartByUser, HttpStatus.OK);
+//	}
 	
 	//Only Admin can use this method
 	@RequestMapping(value = URLConstant.GET_CHECKED_OUT_CART, method = RequestMethod.GET)
@@ -63,11 +72,6 @@ public class CartController {
 		return new ResponseEntity<List<Cart>> (checkedOutCarts, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.GET_CHECKED_OUT_CART_BY_USER, method = RequestMethod.GET)
-	public ResponseEntity<?> getCheckedOutCartsByUser(@RequestParam(ParamConstants.USER_ID) int userId) {
-		List<Cart> checkedOutCarts = cartServiceInterface.getCheckOutCartByUserId(userId);
-		return new ResponseEntity<List<Cart>> (checkedOutCarts, HttpStatus.OK);
-	}
 		
 	@RequestMapping(value = URLConstant.GET_CART_DETAIL, method = RequestMethod.GET)
 	public ResponseEntity<?> getCartDetail(@RequestParam(ParamConstants.CART_ID) int cartId) {
@@ -81,12 +85,6 @@ public class CartController {
 		selectedProductService.removeProductFromCart(selectedId, cartId);
 		Cart cart = cartServiceInterface.getCartDetail(cartId);
 		return new ResponseEntity<Cart> (cart, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/get-cart-by-user", method = RequestMethod.GET)
-	public ResponseEntity<?> getCartByUser(@RequestParam(ParamConstants.USER_ID) int userId) {
-		List<Cart> listOfCart = cartServiceInterface.getCartByUserId(userId);
-		return new ResponseEntity<List<Cart>> (listOfCart, HttpStatus.OK);
 	}
 			
 }

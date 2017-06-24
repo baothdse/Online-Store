@@ -67,7 +67,6 @@ constraint fk_cart_detail foreign key (cartId) references Cart(cartId)
 create table SelectedProduct (
 selectedId int not null auto_increment,
 quantity int,
-checkOut boolean,
 productId int,
 cartId int,
 primary key(selectedId),

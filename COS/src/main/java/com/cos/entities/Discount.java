@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -32,7 +32,7 @@ public class Discount implements java.io.Serializable {
 	private Date endDate;
 	private Integer amount;
 	private Integer productId;
-	private List<Product> products = new ArrayList<Product>();
+	private List<Product> products = new ArrayList<Product>(0);
 
 	public Discount() {
 	}

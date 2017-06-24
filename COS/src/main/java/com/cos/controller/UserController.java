@@ -34,23 +34,23 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> register(@RequestParam(ParamConstants.USERNAME) String username,
-										@RequestParam(ParamConstants.PASSWORD) String password,
-										@RequestParam(ParamConstants.FIRST_NAME) String firstName,
-										@RequestParam(ParamConstants.LAST_NAME) String lastName,
-										@RequestParam(ParamConstants.ADDRESS) String address,
-										@RequestParam(ParamConstants.CITY) String city,
-										@RequestParam(ParamConstants.EMAIL) String email,
-										@RequestParam(ParamConstants.PHONE) String phone) {
-		Error error = new Error(ErrorConstants.ER002, ErrorConstants.EM002);
-		User user = userService.register(username, password, firstName, lastName, address, city, email, phone);
-		if (user != null ) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Error> (error, HttpStatus.OK);
-		}
-	}
+//	@RequestMapping(value = "/register", method = RequestMethod.POST)
+//	public ResponseEntity<?> register(@RequestParam(ParamConstants.USERNAME) String username,
+//										@RequestParam(ParamConstants.PASSWORD) String password,
+//										@RequestParam(ParamConstants.FIRST_NAME) String firstName,
+//										@RequestParam(ParamConstants.LAST_NAME) String lastName,
+//										@RequestParam(ParamConstants.ADDRESS) String address,
+//										@RequestParam(ParamConstants.CITY) String city,
+//										@RequestParam(ParamConstants.EMAIL) String email,
+//										@RequestParam(ParamConstants.PHONE) String phone) {
+//		Error error = new Error(ErrorConstants.ER002, ErrorConstants.EM002);
+//		User user = userService.register(username, password, firstName, lastName, address, city, email, phone);
+//		if (user != null ) {
+//			return new ResponseEntity<User>(user, HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<Error> (error, HttpStatus.OK);
+//		}
+//	}
 	
 	@RequestMapping(value = URLConstant.GET_USER_BY_ID, method = RequestMethod.GET)
 	public ResponseEntity<?> getUserById(@RequestParam(ParamConstants.USER_ID) int userId) {
