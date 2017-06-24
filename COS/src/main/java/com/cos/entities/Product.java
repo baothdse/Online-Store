@@ -1,11 +1,12 @@
 package com.cos.entities;
-// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +41,8 @@ public class Product implements java.io.Serializable {
 	private Date addedDate;
 	private Date addedTime;
 	private Integer soldQuantity;
-	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>();
-	private List<Image> images = new ArrayList<Image>();
+	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>(0);
+	private List<Image> images = new ArrayList<Image>(0);
 
 	public Product() {
 	}
@@ -170,9 +171,6 @@ public class Product implements java.io.Serializable {
 	}
 
 	public void setSoldQuantity(Integer soldQuantity) {
-		if (soldQuantity == null) {
-			setSoldQuantity(0);
-		}
 		this.soldQuantity = soldQuantity;
 	}
 

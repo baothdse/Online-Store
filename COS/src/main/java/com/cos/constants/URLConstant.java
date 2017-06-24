@@ -27,14 +27,14 @@ public class URLConstant {
 	
 	//cart
 	public static final String CART_URL = "/cart";
+	public static final String CREATE_CART = "create-cart";
 	public static final String GET_ALL_CART = "/get-all";
-	public static final String GET_CART_BY_USER = "/get-cart-by-user";
 	public static final String ADD_PRODUCT_TO_CART = "/add-product-to-cart";
 	public static final String CHECK_OUT = "/check-out";
 	public static final String GET_CHECKED_OUT_CART = "/checked-out";
-	public static final String GET_CHECKED_OUT_CART_BY_USER = "/checked-out-by-id";
 	public static final String GET_CART_DETAIL = "/detail";
 	public static final String REMOVE_PRODUCT = "/remove-product";
+	public static final String UPDATE_CART = "/update-cart";
 	
 	//selected product
 	public static final String SELECT_PRODUCT = "/selected-product";

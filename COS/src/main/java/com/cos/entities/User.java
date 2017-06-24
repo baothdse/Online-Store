@@ -1,10 +1,11 @@
 package com.cos.entities;
-// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,33 +27,17 @@ public class User implements java.io.Serializable {
 	private Integer userId;
 	private String username;
 	private String password;
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String city;
-	private String email;
-	private String phone;
 	private Integer roleId;
-	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>();
-	private List<News> newses = new ArrayList<News>();
-	private List<Videos> videoses = new ArrayList<Videos>();
+	private List<News> newses = new ArrayList<News>(0);
+	private List<Videos> videoses = new ArrayList<Videos>(0);
 
 	public User() {
 	}
 
-	public User(String username, String password, String firstName, String lastName, String address, String city,
-			String email, String phone, Integer roleId, List<SelectedProduct> selectedproducts, List<News> newses,
-			List<Videos> videoses) {
+	public User(String username, String password, Integer roleId, List<News> newses, List<Videos> videoses) {
 		this.username = username;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.email = email;
-		this.phone = phone;
 		this.roleId = roleId;
-		this.selectedproducts = selectedproducts;
 		this.newses = newses;
 		this.videoses = videoses;
 	}
@@ -87,60 +72,6 @@ public class User implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "firstName")
-	public String getFirstName() {
-		return this.firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	@Column(name = "lastName")
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	@Column(name = "address")
-	public String getAddress() {
-		return this.address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	@Column(name = "city")
-	public String getCity() {
-		return this.city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	@Column(name = "email")
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(name = "phone", length = 20)
-	public String getPhone() {
-		return this.phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	@Column(name = "roleId")
 	public Integer getRoleId() {
 		return this.roleId;
@@ -152,15 +83,6 @@ public class User implements java.io.Serializable {
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public List<SelectedProduct> getSelectedproducts() {
-		return this.selectedproducts;
-	}
-
-	public void setSelectedproducts(List<SelectedProduct> selectedproducts) {
-		this.selectedproducts = selectedproducts;
-	}
-	@JsonManagedReference
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	public List<News> getNewses() {
 		return this.newses;
 	}
@@ -168,6 +90,7 @@ public class User implements java.io.Serializable {
 	public void setNewses(List<News> newses) {
 		this.newses = newses;
 	}
+
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	public List<Videos> getVideoses() {

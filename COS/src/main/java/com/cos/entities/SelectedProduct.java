@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Jun 13, 2017 6:54:30 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -24,19 +24,14 @@ public class SelectedProduct implements java.io.Serializable {
 	private Integer selectedId;
 	private Cart cart;
 	private Product product;
-	private User user;
 	private Integer quantity;
-	private Boolean checkOut;
-
 	public SelectedProduct() {
 	}
 
-	public SelectedProduct(Cart cart, Product product, User user, Integer quantity, Boolean checkOut) {
+	public SelectedProduct(Cart cart, Product product, Integer quantity) {
 		this.cart = cart;
 		this.product = product;
-		this.user = user;
 		this.quantity = quantity;
-		this.checkOut = checkOut;
 	}
 
 	@Id
@@ -61,7 +56,7 @@ public class SelectedProduct implements java.io.Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
+	
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "productId")
@@ -73,17 +68,6 @@ public class SelectedProduct implements java.io.Serializable {
 		this.product = product;
 	}
 
-	@JsonBackReference
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userId")
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Column(name = "quantity")
 	public Integer getQuantity() {
 		return this.quantity;
@@ -91,18 +75,6 @@ public class SelectedProduct implements java.io.Serializable {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	@Column(name = "checkOut")
-	public Boolean getCheckOut() {
-		if (checkOut == null) {
-			setCheckOut(false);
-		}
-		return this.checkOut;
-	}
-
-	public void setCheckOut(Boolean checkOut) {
-		this.checkOut = checkOut;
 	}
 
 }

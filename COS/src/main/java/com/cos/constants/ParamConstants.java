@@ -1,5 +1,9 @@
 package com.cos.constants;
 
+import java.util.Date;
+
+import com.cos.entities.Cart;
+
 public class ParamConstants {
 	//Product
 	public static final String PRODUCT_ID = "productId";
@@ -17,12 +21,6 @@ public class ParamConstants {
 	public static final String USER_ID = "userId";
 	public static final String USERNAME = "username";
 	public static final String PASSWORD = "password";
-	public static final String FIRST_NAME = "firstName";
-	public static final String LAST_NAME = "lastName";
-	public static final String ADDRESS = "address";
-	public static final String CITY = "city";
-	public static final String EMAIL = "email";
-	public static final String PHONE = "phone";
 	public static final String ROLE_ID = "roleId";
 	
 	//image
@@ -53,4 +51,10 @@ public class ParamConstants {
 	
 	//selected product
 	public static final String SELECTED_ID = "selectedId";
+	//Cart detail
+	public static final String FULL_NAME = "fullName";
+	public static final String ADDRESS = "address";
+	public static final String CITY = "city";
+	public static final String EMAIL = "email";
+	public static final String PHONE = "phone";
 }

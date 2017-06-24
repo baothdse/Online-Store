@@ -4,7 +4,8 @@ import com.cos.entities.Cart;
 import com.cos.entities.SelectedProduct;
 
 public interface SelectedProductServiceInterface {
-	SelectedProduct selectProduct(int userId, int productId, int quantity);
+	SelectedProduct selectProduct(int productId, int quantity);
 	void removeProductFromCart(int selectedId, int cartId);
 	int recountPrice(Cart cart);
+	SelectedProduct getSelectedById(int selectedId);
 }
