@@ -12,7 +12,6 @@ import com.cos.entities.SelectedProduct;
 import com.cos.repositories.CartRepository;
 import com.cos.repositories.ProductRepository;
 import com.cos.repositories.SelectedProductRepository;
-import com.cos.repositories.UserRepository;
 import com.cos.services.interfaces.SelectedProductServiceInterface;
 
 @Service
@@ -49,6 +48,7 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 		cart.getSelectedproducts().remove(cart.getSelectedproducts().indexOf(productInCart));
 		selectedProductRepository.delete(productInCart);
 		String newTotalPrice = String.valueOf(recountPrice(cart));
+		cart.setTotalPrice(newTotalPrice);
 		cartRepository.setTotalPriceByCartId(newTotalPrice, cartId);
 	}
 
@@ -58,9 +58,8 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 		int totalPrice = 0;
 		List<SelectedProduct> productInCart = cart.getSelectedproducts();
 		for (int index = 0; index < productInCart.size(); index++) {
-			totalPrice = productInCart.get(index).getQuantity() * 
+			totalPrice += productInCart.get(index).getQuantity() * 
 					Integer.parseInt(productInCart.get(index).getProduct().getPrice());
-			totalPrice += totalPrice;
 		}
 		return totalPrice;
 	}

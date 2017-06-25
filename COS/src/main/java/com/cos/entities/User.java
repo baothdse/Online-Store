@@ -1,11 +1,10 @@
 package com.cos.entities;
-// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 25, 2017 12:23:22 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +27,8 @@ public class User implements java.io.Serializable {
 	private String username;
 	private String password;
 	private Integer roleId;
-	private List<News> newses = new ArrayList<News>(0);
-	private List<Videos> videoses = new ArrayList<Videos>(0);
+	private List<News> newses = new ArrayList<News>();
+	private List<Videos> videoses = new ArrayList<Videos>();
 
 	public User() {
 	}

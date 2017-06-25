@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 25, 2017 12:23:22 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -25,6 +25,7 @@ public class SelectedProduct implements java.io.Serializable {
 	private Cart cart;
 	private Product product;
 	private Integer quantity;
+
 	public SelectedProduct() {
 	}
 
@@ -56,7 +57,7 @@ public class SelectedProduct implements java.io.Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
+
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "productId")

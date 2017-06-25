@@ -1,6 +1,7 @@
 package com.cos.services;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,15 +82,24 @@ public class CartService implements CartServiceInterface {
 	}
 
 	@Override
-	public void checkOut(int userId, String note) {
-//		// TODO Auto-generated method stub
-//		List<Cart> listOfCartByUser = cartRepository.findByUser(userId);
-//		for (int index = 0; index < listOfCartByUser.size(); index++) {
-//			listOfCartByUser.get(index).setCheckOut(true);
-//			for (SelectedProduct selected : listOfCartByUser.get(index).getSelectedproducts()) {
-//				selectedRepository.setCheckOutBySelectedId(selected.getSelectedId());
-//			}
-//		}
+	public void checkOut(Cart cart, String fullName, String address, String city, 
+			String email, String phone) {
+		// TODO Auto-generated method stub
+		Calendar cal = Calendar.getInstance();
+		Date checkOutDate = cal.getTime();
+		Date checkOutTime = cal.getTime();
+		boolean checkOut = true;
+		
+		cart.setCheckOut(true);
+		cart.setFullName(fullName);
+		cart.setAddress(address);
+		cart.setCity(city);
+		cart.setEmail(email);
+		cart.setPhone(phone);
+		cart.setAddedDate(cal.getTime());
+		cart.setAddedTime(cal.getTime());
+		cartRepository.setCartDetail(checkOut, fullName, address, city, email, phone, 
+				checkOutDate, checkOutTime, cart.getCartId() );
 	}
 
 	@Override
@@ -104,6 +114,12 @@ public class CartService implements CartServiceInterface {
 		// TODO Auto-generated method stub
 		Cart cart = cartRepository.findByCartId(cartId);
 		return cart;
+	}
+
+	@Override
+	public Cart getCartById(int cartId) {
+		// TODO Auto-generated method stub
+		return cartRepository.findByCartId(cartId);
 	}
 
 }
