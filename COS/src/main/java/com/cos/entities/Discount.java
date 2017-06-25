@@ -90,6 +90,9 @@ public class Discount implements java.io.Serializable {
 
 	@Column(name = "amount")
 	public Integer getAmount() {
+		if (amount == null) {
+			setAmount(0);
+		}
 		return this.amount;
 	}
 

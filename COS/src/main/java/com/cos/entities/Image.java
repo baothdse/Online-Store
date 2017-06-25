@@ -69,6 +69,9 @@ public class Image implements java.io.Serializable {
 
 	@Column(name = "main")
 	public Boolean getMain() {
+		if (main == null) {
+			setMain(false);
+		}
 		return this.main;
 	}
 

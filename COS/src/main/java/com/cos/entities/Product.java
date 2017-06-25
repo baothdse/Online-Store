@@ -166,6 +166,9 @@ public class Product implements java.io.Serializable {
 
 	@Column(name = "soldQuantity")
 	public Integer getSoldQuantity() {
+		if (soldQuantity == null) {
+			setSoldQuantity(0);
+		}
 		return this.soldQuantity;
 	}
 
