@@ -1,5 +1,5 @@
 package com.cos.entities;
-// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 25, 2017 12:23:22 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -69,6 +69,9 @@ public class Image implements java.io.Serializable {
 
 	@Column(name = "main")
 	public Boolean getMain() {
+		if (main == null) {
+			setMain(false);
+		}
 		return this.main;
 	}
 

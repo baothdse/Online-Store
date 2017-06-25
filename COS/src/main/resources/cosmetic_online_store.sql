@@ -48,11 +48,6 @@ create table Cart (
 cartId int not null auto_increment,
 totalPrice varchar(20),
 checkOut boolean,
-primary key (cartId)
-);
-
-create table CartDetail (
-cartId int not null,
 fullName varchar(255),
 address varchar(255),
 city varchar(255),
@@ -60,8 +55,7 @@ email varchar(255),
 phone varchar(20),
 addedDate date,
 addedTime time,
-primary key (cartId),
-constraint fk_cart_detail foreign key (cartId) references Cart(cartId)
+primary key (cartId)
 );
 
 create table SelectedProduct (
@@ -134,3 +128,17 @@ INSERT INTO `image` (`imageId`,`link`,`productId`,`main`) VALUES (16,'https://wi
 /*video*/
 INSERT INTO `videos` (`videoId`,`link`,`addedDate`,`addedTime`,`userId`) VALUES (1,'https://youtu.be/NlrYn_dZdqk','2017-06-16','16:09:00',1);
 INSERT INTO `videos` (`videoId`,`link`,`addedDate`,`addedTime`,`userId`) VALUES (2,'https://youtu.be/QNnLqF4R0l4','2017-06-16','16:10:00',1);
+
+/*selected product*/
+INSERT INTO `selectedproduct` (`selectedId`,`quantity`,`productId`,`cartId`) VALUES (1,1,6,1);
+INSERT INTO `selectedproduct` (`selectedId`,`quantity`,`productId`,`cartId`) VALUES (2,1,5,1);
+INSERT INTO `selectedproduct` (`selectedId`,`quantity`,`productId`,`cartId`) VALUES (3,1,1,2);
+INSERT INTO `selectedproduct` (`selectedId`,`quantity`,`productId`,`cartId`) VALUES (5,1,3,3);
+INSERT INTO `selectedproduct` (`selectedId`,`quantity`,`productId`,`cartId`) VALUES (9,1,2,4);
+
+
+/*cart*/
+INSERT INTO `cart` (`cartId`,`totalPrice`,`checkOut`,`fullName`,`address`,`city`,`email`,`phone`,`addedDate`,`addedTime`) VALUES (1,'450000',1,'bao','252 pvt','hcm','baothd@gmail.com','1234','2017-06-25','15:40:06');
+INSERT INTO `cart` (`cartId`,`totalPrice`,`checkOut`,`fullName`,`address`,`city`,`email`,`phone`,`addedDate`,`addedTime`) VALUES (2,'200000',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `cart` (`cartId`,`totalPrice`,`checkOut`,`fullName`,`address`,`city`,`email`,`phone`,`addedDate`,`addedTime`) VALUES (3,'390000',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `cart` (`cartId`,`totalPrice`,`checkOut`,`fullName`,`address`,`city`,`email`,`phone`,`addedDate`,`addedTime`) VALUES (4,'170000',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL);

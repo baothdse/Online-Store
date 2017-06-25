@@ -35,6 +35,13 @@ public class CartController {
 //	}
 //	
 	
+	
+	/**
+	 * Use when customer add the first product
+	 * @param productId
+	 * @param quantity
+	 * @return
+	 */
 	@RequestMapping(value = URLConstant.ADD_PRODUCT_TO_CART, method = RequestMethod.POST)
 	public ResponseEntity<?> addProductToCart(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
 											@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity) {
@@ -43,6 +50,14 @@ public class CartController {
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 	
+	
+	/**
+	 * This API will be called when customer want add the next product
+	 * @param productId
+	 * @param quantity
+	 * @param cartId
+	 * @return
+	 */
 	@RequestMapping(value = URLConstant.UPDATE_CART, method = RequestMethod.POST)
 	public ResponseEntity<?> updateCart(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
 										@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity,
@@ -52,20 +67,34 @@ public class CartController {
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value = URLConstant.CHECK_OUT, method = RequestMethod.POST)
-//	public ResponseEntity<?> checkOut(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
-//									@RequestParam(ParamConstants.PRODUCT_QUANTITY) int quantity,
-//									@RequestParam(ParamConstants.FULL_NAME) String fullName,
-//									@RequestParam(ParamConstants.ADDRESS) String address,
-//									@RequestParam(ParamConstants.CITY) String city,
-//									@RequestParam(ParamConstants.EMAIL) String email,
-//									@RequestParam(ParamConstants.PHONE) String phone) {
-//		cartServiceInterface.checkOut(userId, note);
-//		List<Cart> listOfCartByUser = cartServiceInterface.getCartByUserId(userId);
-//		return new ResponseEntity<List<Cart>> (listOfCartByUser, HttpStatus.OK);
-//	}
 	
-	//Only Admin can use this method
+	/**
+	 * Use when customer check out
+	 * @param cartId
+	 * @param fullName
+	 * @param address
+	 * @param city
+	 * @param email
+	 * @param phone
+	 * @return
+	 */
+	@RequestMapping(value = URLConstant.CHECK_OUT, method = RequestMethod.POST)
+	public ResponseEntity<?> checkOut(@RequestParam(ParamConstants.CART_ID) int cartId,
+									@RequestParam(ParamConstants.FULL_NAME) String fullName,
+									@RequestParam(ParamConstants.ADDRESS) String address,
+									@RequestParam(ParamConstants.CITY) String city,
+									@RequestParam(ParamConstants.EMAIL) String email,
+									@RequestParam(ParamConstants.PHONE) String phone) {
+		Cart cart = cartServiceInterface.getCartById(cartId);
+		cartServiceInterface.checkOut(cart, fullName, address, city, email, phone);
+		return new ResponseEntity<Cart> (cart, HttpStatus.OK);
+	}
+	
+	/**
+	 * Only Admin can use this method
+	 * 
+	 * @return checkedOutCart order by date, time ASC
+	 */
 	@RequestMapping(value = URLConstant.GET_CHECKED_OUT_CART, method = RequestMethod.GET)
 	public ResponseEntity<?> getCheckedOutCarts	() {
 		List<Cart> checkedOutCarts = cartServiceInterface.getCheckOutCart();

@@ -14,8 +14,9 @@ public interface CartServiceInterface {
 	Cart updateCart(int selectedId, int cartId);
 
 	int calculateTotalPrice(List<SelectedProduct> selectedProducts);
-	void checkOut(int userId, String note);
+	void checkOut(Cart cart, String fullName, String address, String city, String email, String phone);
 	//Only Admin can use this method
 	List<Cart> getCheckOutCart();
 	Cart getCartDetail(int cartId);
+	Cart getCartById(int cartId);
 }

@@ -1,9 +1,10 @@
 package com.cos.entities;
-// Generated Jun 23, 2017 6:43:50 PM by Hibernate Tools 4.3.1.Final
+// Generated Jun 25, 2017 12:23:22 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,8 +13,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -29,17 +31,30 @@ public class Cart implements java.io.Serializable {
 	private Integer cartId;
 	private String totalPrice;
 	private Boolean checkOut;
-	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>(0);
-	private CartDetail cartDetail;
+	private String fullName;
+	private String address;
+	private String city;
+	private String email;
+	private String phone;
+	private Date addedDate;
+	private Date addedTime;
+	private List<SelectedProduct> selectedproducts = new ArrayList<SelectedProduct>();
 
 	public Cart() {
 	}
 
-	public Cart(String totalPrice, Boolean checkOut, List<SelectedProduct> selectedproducts, CartDetail cartDetail) {
+	public Cart(String totalPrice, Boolean checkOut, String fullName, String address, String city, String email,
+			String phone, Date addedDate, Date addedTime, List<SelectedProduct> selectedproducts) {
 		this.totalPrice = totalPrice;
 		this.checkOut = checkOut;
+		this.fullName = fullName;
+		this.address = address;
+		this.city = city;
+		this.email = email;
+		this.phone = phone;
+		this.addedDate = addedDate;
+		this.addedTime = addedTime;
 		this.selectedproducts = selectedproducts;
-		this.cartDetail = cartDetail;
 	}
 
 	@Id
@@ -56,6 +71,9 @@ public class Cart implements java.io.Serializable {
 
 	@Column(name = "totalPrice", length = 20)
 	public String getTotalPrice() {
+		if (totalPrice == null) {
+			setTotalPrice("0");
+		}
 		return this.totalPrice;
 	}
 
@@ -65,11 +83,79 @@ public class Cart implements java.io.Serializable {
 
 	@Column(name = "checkOut")
 	public Boolean getCheckOut() {
+		if (checkOut == null) {
+			setCheckOut(false);
+		}
 		return this.checkOut;
 	}
 
 	public void setCheckOut(Boolean checkOut) {
 		this.checkOut = checkOut;
+	}
+
+	@Column(name = "fullName")
+	public String getFullName() {
+		return this.fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	@Column(name = "address")
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Column(name = "city")
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	@Column(name = "email")
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Column(name = "phone", length = 20)
+	public String getPhone() {
+		return this.phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "addedDate", length = 10)
+	public Date getAddedDate() {
+		return this.addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
+	@Temporal(TemporalType.TIME)
+	@Column(name = "addedTime", length = 8)
+	public Date getAddedTime() {
+		return this.addedTime;
+	}
+
+	public void setAddedTime(Date addedTime) {
+		this.addedTime = addedTime;
 	}
 
 	@JsonManagedReference
@@ -80,15 +166,6 @@ public class Cart implements java.io.Serializable {
 
 	public void setSelectedproducts(List<SelectedProduct> selectedproducts) {
 		this.selectedproducts = selectedproducts;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "cart")
-	public CartDetail getCartdetail() {
-		return this.cartDetail;
-	}
-
-	public void setCartdetail(CartDetail cartDetail) {
-		this.cartDetail = cartDetail;
 	}
 
 }
