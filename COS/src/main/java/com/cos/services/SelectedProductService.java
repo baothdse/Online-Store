@@ -35,7 +35,7 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 		
 		selectedProduct.setProduct(product);
 		selectedProduct.setQuantity(quantity);
-		selectedProductRepository.save(selectedProduct);
+		//selectedProductRepository.save(selectedProduct);
 		return selectedProduct;
 	
 	}
@@ -68,6 +68,12 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 	public SelectedProduct getSelectedById(int selectedId) {
 		// TODO Auto-generated method stub
 		return selectedProductRepository.findBySelectedId(selectedId);
+	}
+
+	@Override
+	public SelectedProduct saveSelected(SelectedProduct selected) {
+		// TODO Auto-generated method stub
+		return selectedProductRepository.save(selected);
 	}
 
 }

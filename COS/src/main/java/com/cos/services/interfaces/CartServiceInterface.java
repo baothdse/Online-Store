@@ -11,7 +11,7 @@ public interface CartServiceInterface {
 	Cart createCart();
 	
 	Cart addSelectedProductToCart(int selectedId);
-	Cart updateCart(int selectedId, int cartId);
+	Cart updateCart(SelectedProduct selected, int cartId);
 
 	int calculateTotalPrice(List<SelectedProduct> selectedProducts);
 	void checkOut(Cart cart, String fullName, String address, String city, String email, String phone);
