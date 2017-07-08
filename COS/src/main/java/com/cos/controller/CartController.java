@@ -46,6 +46,7 @@ public class CartController {
 	public ResponseEntity<?> addProductToCart(@RequestParam(ParamConstants.PRODUCT_ID) int productId,
 											@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity) {
 		SelectedProduct selectedProduct = selectedProductService.selectProduct(productId, quantity);
+		selectedProductService.saveSelected(selectedProduct);
 		Cart cart = cartServiceInterface.addSelectedProductToCart(selectedProduct.getSelectedId());
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
@@ -63,7 +64,7 @@ public class CartController {
 										@RequestParam(ParamConstants.SOLD_QUANTITY) int quantity,
 										@RequestParam(ParamConstants.CART_ID) int cartId){
 		SelectedProduct selectedProduct = selectedProductService.selectProduct(productId, quantity);
-		Cart cart = cartServiceInterface.updateCart(selectedProduct.getSelectedId(), cartId);
+		Cart cart = cartServiceInterface.updateCart(selectedProduct, cartId);
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
 	

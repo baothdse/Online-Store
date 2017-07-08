@@ -51,16 +51,34 @@ public class CartService implements CartServiceInterface {
 	}
 
 	@Override
-	public Cart updateCart(int selectedId, int cartId) {
+	public Cart updateCart(SelectedProduct selected, int cartId) {
 		// TODO Auto-generated method stub
 		Cart cart = cartRepository.findByCartId(cartId);
-		SelectedProduct selected = selectedRepository.findBySelectedId(selectedId);
 		selected.setCart(cart);
-		cart.getSelectedproducts().add(selected);
-		//System.out.println("bao bao" + cart.getSelectedproducts().size());
-		int totalPrice = calculateTotalPrice(cart.getSelectedproducts());
-		cartRepository.setTotalPriceByCartId(String.valueOf(totalPrice), cartId);
-		cart.setTotalPrice(String.valueOf(totalPrice));
+		boolean flag = false;
+
+		List<SelectedProduct> productInCart = cart.getSelectedproducts();
+		for (int index = 0; index < productInCart.size(); index++) {
+			if (selected.getProduct().getProductId().equals(productInCart.get(index).getProduct().getProductId())) {
+				flag = true;
+				int newQuantity = selected.getQuantity() + productInCart.get(index).getQuantity();
+				int totalPrice = Integer.parseInt(cart.getTotalPrice()) + 
+						(selected.getQuantity()* Integer.parseInt(selected.getProduct().getPrice()));					 
+				selectedRepository.updateQuantity(newQuantity, productInCart.get(index).getSelectedId());
+				
+				cartRepository.setTotalPriceByCartId(String.valueOf(totalPrice), cartId);
+				cart.getSelectedproducts().get(index).setQuantity(newQuantity);
+				cart.setTotalPrice(String.valueOf(totalPrice));
+				break;
+			} else {flag = false;}
+		}
+		if (flag == false) {
+			selectedRepository.save(selected);
+			cart.getSelectedproducts().add(selected);
+			int totalPrice = calculateTotalPrice(cart.getSelectedproducts());
+			cartRepository.setTotalPriceByCartId(String.valueOf(totalPrice), cartId);
+			cart.setTotalPrice(String.valueOf(totalPrice));
+		}
 		return cart;
 	}
 
