@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.entities.Cart;
+import com.cos.entities.Product;
 import com.cos.entities.SelectedProduct;
 import com.cos.repositories.CartRepository;
+import com.cos.repositories.ProductRepository;
 import com.cos.repositories.SelectedProductRepository;
 import com.cos.services.interfaces.CartServiceInterface;
 
@@ -22,6 +24,8 @@ public class CartService implements CartServiceInterface {
 	private CartRepository cartRepository;
 	@Autowired
 	private SelectedProductRepository selectedRepository;
+	@Autowired 
+	private ProductRepository productRepo;
 
 	@Override
 	public List<Cart> getAllCart() {

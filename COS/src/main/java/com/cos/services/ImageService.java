@@ -41,10 +41,12 @@ public class ImageService implements ImageServiceInterface {
 	}
 
 	@Override
-	public void changeMainImage(Image image) {
+	public void changeMainImage(Image image, String newImage) {
 		// TODO Auto-generated method stub
 		List<Image> listOfImageByProductId = getImageByProductId(image.getProduct().getProductId());
-		imageRepository.setFixedMainFor(true, image.getImageId());
+		imageRepository.setMainImage(newImage, true, image.getImageId());
+		image.setMain(true);
+		image.setLink(newImage);
 		listOfImageByProductId.remove(image);
 		for (Image i : listOfImageByProductId) {
 			imageRepository.setFixedMainFor(false, i.getImageId());

@@ -17,7 +17,7 @@ public class URLConstant {
 	public static final String IMAGE_URL = "/image";
 	public static final String ADD_IMAGE_URL = "/add";
 	public static final String GET_ALL_IMAGE = "/all";
-	public static final String CHANGE_MAIN_IMAGE = "change";
+	public static final String CHANGE_MAIN_IMAGE = "/change";
 	
 	//discount
 	public static final String DISCOUNT_URL = "/discount";
@@ -38,6 +38,7 @@ public class URLConstant {
 	
 	//selected product
 	public static final String SELECT_PRODUCT = "/selected-product";
+	public static final String GET_SELECTED_BY_ID = "/get-selected-by-id";
 	
 	//new
 	public static final String NEWS = "/news";
