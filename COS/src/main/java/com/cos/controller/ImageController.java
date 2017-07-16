@@ -48,7 +48,11 @@ public class ImageController {
 //		imageServiceInterface.changeMainImage(image);
 //		return new ResponseEntity<Image> (image, HttpStatus.OK);
 //	}
+	@RequestMapping(value = URLConstant.DELETE_IMAGE, method = RequestMethod.POST)
+	public ResponseEntity<?> deleteImageByProduct(@RequestParam(ParamConstants.PRODUCT_ID) int productId) {
+		String delSuccess = "delete successful";
+		imageServiceInterface.deleteImageByProduct(productId);
+		return new ResponseEntity<String> (delSuccess, HttpStatus.OK);
+	}
 	
-	
-
 }
