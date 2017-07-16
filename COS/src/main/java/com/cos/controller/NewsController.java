@@ -35,7 +35,7 @@ public class NewsController {
 		return new ResponseEntity <List<News>>(top4News, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.DELETE_NEW, method = RequestMethod.DELETE)
+	@RequestMapping(value = URLConstant.DELETE_NEW, method = RequestMethod.POST)
 	public ResponseEntity<?> deleteNew(@RequestParam(ParamConstants.NEW_ID) int newId) {
 		String successful = "Delete new successful!";
 		newServiceInterface.deleteNew(newId);

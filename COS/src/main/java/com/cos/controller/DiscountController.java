@@ -32,7 +32,7 @@ public class DiscountController {
 		return new ResponseEntity<Discount>(discount, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.DEL_DISCOUNT_URL, method = RequestMethod.DELETE)
+	@RequestMapping(value = URLConstant.DEL_DISCOUNT_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> deleteImage(@RequestParam(ParamConstants.DISCOUNT_ID) int discountId) {
 		discountServiceInterface.deleteDiscount(discountId);
 		return new ResponseEntity<String> (HttpStatus.OK);

@@ -65,9 +65,11 @@ public class SelectedProductService implements SelectedProductServiceInterface {
 	}
 
 	@Override
-	public SelectedProduct getSelectedById(int selectedId) {
+	public String getSelectedById(int selectedId) {
+		SelectedProduct selected = selectedProductRepository.findBySelectedId(selectedId);
 		// TODO Auto-generated method stub
-		return selectedProductRepository.findBySelectedId(selectedId);
+		String json = "{ selectedId : " + selected.getSelectedId() + " , quantity : " + selected.getQuantity() +  " , productId : " + selected.getProduct().getProductId() + " , cartId: " + selected.getCart().getCartId() + " }";
+		return json;
 	}
 
 	@Override
