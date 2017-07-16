@@ -17,6 +17,11 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 	Image findByImageId(Integer imageId);
 	
 	@Modifying
+	@Query("update Image i set i.link = ?1, i.main = ?2 where i.imageId = ?3")
+	void setMainImage(String imageUrl, boolean main, int imageId);
+	
+	@Modifying
 	@Query("update Image i set i.main = ?1 where i.imageId = ?2")
 	void setFixedMainFor(boolean main, int imageId);
+
 }

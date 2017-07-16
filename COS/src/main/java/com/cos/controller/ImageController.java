@@ -37,11 +37,17 @@ public class ImageController {
 	}
 	
 	@RequestMapping(value = URLConstant.CHANGE_MAIN_IMAGE, method = RequestMethod.POST)
-	public ResponseEntity<?> changeMainImage(@RequestParam(ParamConstants.IMAGE_ID) Integer imageId) {
+	public ResponseEntity<?> changeMainImage(@RequestParam(ParamConstants.IMAGE_ID) Integer imageId,
+											@RequestParam(ParamConstants.NEW_IMAGE) String newImage) {
 		Image image = imageServiceInterface.getImageById(imageId);
-		imageServiceInterface.changeMainImage(image);
+		imageServiceInterface.changeMainImage(image, newImage);
 		return new ResponseEntity<Image> (image, HttpStatus.OK);
 	}
+//	public ResponseEntity<?> changeMainImage(@RequestParam(ParamConstants.IMAGE_ID) Integer imageId) {
+//		Image image = imageServiceInterface.getImageById(imageId);
+//		imageServiceInterface.changeMainImage(image);
+//		return new ResponseEntity<Image> (image, HttpStatus.OK);
+//	}
 	
 	
 

@@ -57,4 +57,8 @@ public class ParamConstants {
 	public static final String CITY = "city";
 	public static final String EMAIL = "email";
 	public static final String PHONE = "phone";
+	
+	//Image 
+	public static final String NEW_IMAGE = "newImage";
+
 }
