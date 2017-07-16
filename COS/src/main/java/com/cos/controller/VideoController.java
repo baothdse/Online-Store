@@ -28,7 +28,7 @@ public class VideoController {
 		return new ResponseEntity<Videos>(video, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.DELETE_VIDEO, method = RequestMethod.DELETE)
+	@RequestMapping(value = URLConstant.DELETE_VIDEO, method = RequestMethod.POST)
 	public ResponseEntity<?> deleteVideo(@RequestParam(ParamConstants.VIDEO_ID) int videoId) {
 		String status = "Delete successful";
 		videoServiceInterface.deleteVideo(videoId);

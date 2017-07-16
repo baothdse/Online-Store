@@ -75,7 +75,7 @@ public class ProductController {
 		return new ResponseEntity<List<Product>> (groupOf4ProductByKind, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = URLConstant.DELETE_PRODUCT_URL, method = RequestMethod.DELETE)
+	@RequestMapping(value = URLConstant.DELETE_PRODUCT_URL, method = RequestMethod.POST)
 	public ResponseEntity<?> deleteProduct(@RequestParam(ParamConstants.PRODUCT_ID) int productId) {
 		productServiceInterface.deleteProductById(productId);
 		List<Product> listOfProduct = productServiceInterface.getAllProduct();

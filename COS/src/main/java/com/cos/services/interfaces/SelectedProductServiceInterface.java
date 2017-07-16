@@ -7,6 +7,6 @@ public interface SelectedProductServiceInterface {
 	SelectedProduct selectProduct(int productId, int quantity);
 	void removeProductFromCart(int selectedId, int cartId);
 	int recountPrice(Cart cart);
-	SelectedProduct getSelectedById(int selectedId);
+	String getSelectedById(int selectedId);
 	SelectedProduct saveSelected(SelectedProduct selected);
 }

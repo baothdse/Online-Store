@@ -55,4 +55,5 @@ public class URLConstant {
 	
 	// user
 	public static final String GET_USER_BY_ID = "/get-user-by-id";
+	public static final String DELETE_IMAGE = "/delete-image";
 }

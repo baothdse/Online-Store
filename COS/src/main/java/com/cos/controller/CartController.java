@@ -119,7 +119,7 @@ public class CartController {
 	
 	@RequestMapping(value = URLConstant.GET_SELECTED_BY_ID, method = RequestMethod.GET)
 	public ResponseEntity<?> removeProductFromCart(@RequestParam(ParamConstants.SELECTED_ID) int selectedId) {
-		SelectedProduct selected = selectedProductService.getSelectedById(selectedId);
-		return new ResponseEntity<SelectedProduct> (selected, HttpStatus.OK);
+		String selected = selectedProductService.getSelectedById(selectedId);
+		return new ResponseEntity<String> (selected, HttpStatus.OK);
 	}
 }
