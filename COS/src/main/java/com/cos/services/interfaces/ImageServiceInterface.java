@@ -10,4 +10,5 @@ public interface ImageServiceInterface {
 	void changeMainImage(Image image, String newImage);
 	Image getImageById(int imageId);
 	List<Image> getImageByProductId(Integer productId);
+	void deleteImageByProduct(int productId);
 }

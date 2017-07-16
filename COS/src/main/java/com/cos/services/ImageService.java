@@ -66,5 +66,13 @@ public class ImageService implements ImageServiceInterface {
 		return listOfImageByProductId;
 	}
 
-	
+	@Override
+	public void deleteImageByProduct(int productId) {
+		// TODO Auto-generated method stub
+		List<Image> listImages = imageRepository.findByProduct(productId);
+		for (int index = 0; index < listImages.size(); index++) {
+			imageRepository.delete(listImages.get(index));
+		}
+	}
+
 }
