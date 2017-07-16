@@ -38,6 +38,7 @@ public class URLConstant {
 	
 	//selected product
 	public static final String SELECT_PRODUCT = "/selected-product";
+	public static final String GET_SELECTED_BY_ID = "/get-selected-by-id";
 	
 	//new
 	public static final String NEWS = "/news";
