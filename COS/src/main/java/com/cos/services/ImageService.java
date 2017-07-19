@@ -40,6 +40,7 @@ public class ImageService implements ImageServiceInterface {
 		return listOfImage;
 	}
 
+	//ko co loi
 	@Override
 	public void changeMainImage(Image image, String newImage) {
 		// TODO Auto-generated method stub
